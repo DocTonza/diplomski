@@ -1,0 +1,52 @@
+﻿.grafNaslov {
+    fill:white;
+    font-weight:bold;
+    font-size:22px;
+    text-align:center;
+    text-anchor:middle;
+
+
+}
+
+.pitaLegenda {
+    fill:white;
+    font-weight:normal;
+    font-variant:normal;
+    /*font-family:monospace;*/
+    font-size:14px;
+    
+}
+
+.pitaLegendaDesno {
+    fill:white;
+    font-weight:normal;
+    font-variant:normal;
+    /*font-family:monospace;*/
+    font-size:14px;
+    text-anchor:end;
+    
+}
+
+.pitaSVG {
+    border:dotted;
+    width:100%;
+
+}
+
+.pitaPostotciTipsDesni {
+    fill:white;
+    border:solid 1px;
+    font-size:12px;
+    background-color:white;
+    text-anchor:start;
+}
+
+.pitaPostotciTipsLijevi {
+    fill:white;
+    border:solid 1px;
+    font-size:12px;
+    background-color:white;
+    text-anchor:end;
+}
+
+
