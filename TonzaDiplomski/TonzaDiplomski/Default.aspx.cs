@@ -23,7 +23,7 @@ namespace TonzaDiplomski
             podaci.Add(new PodatakZaGraf("Dina", 134));
 
 
-            Pita pita1od3 = new Pita("oVo je naslov prve pite",podaci);
+            PitaGraf pita1od3 = new PitaGraf("oVo je naslov prve pite",podaci);
             PrviOdTri.InnerHtml = pita1od3.ToString();
 
             //idemo malo na ruke napuniti podatke
@@ -37,7 +37,7 @@ namespace TonzaDiplomski
             podaci2.Add(new PodatakZaGraf("Laura", 23));
             podaci2.Add(new PodatakZaGraf("Ema", 35));
             podaci2.Add(new PodatakZaGraf("Julio", 135));
-            Pita pita2od3 = new Pita("ovo je naslov druge pite",podaci2);
+            PitaGraf pita2od3 = new PitaGraf("ovo je naslov druge pite",podaci2);
             DrugiOdTri.InnerHtml = pita2od3.ToString();
 
 
@@ -61,7 +61,7 @@ namespace TonzaDiplomski
             podaci3.Add(new PodatakZaGraf("Ema", 25));
             podaci3.Add(new PodatakZaGraf("Ema", 25));
          
-            Pita pita3od3 = new Pita("ovo je naslov trece pite", podaci3);
+            PitaGraf pita3od3 = new PitaGraf("ovo je naslov trece pite", podaci3);
             TreciOdTri.InnerHtml = pita3od3.ToString();
 
         }
