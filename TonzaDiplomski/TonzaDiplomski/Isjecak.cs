@@ -17,6 +17,8 @@ namespace TonzaDiplomski {
         string isjecakBoja;
         string pathStr;                      // ovdje nam piše path dio koji zapravo crta isječak (<path d=...)
         double podatak;                       // ovdje piše vrijednost koju prikazujemo
+        int redniBroj;                          // redni broj isječka
+        string grafID;
 
         static List<Labele> prijasnjeLabele = new List<Labele>();          // tu čuvamo stare labele za usporedbu i poravnavanje
 
@@ -70,9 +72,20 @@ namespace TonzaDiplomski {
                 podatak = value;
             }
         }
+        public int RedniBroj {
+            get {
+                return redniBroj;
+            }
+            set {
+                redniBroj = value;
+            }
+        }
 
-        public Isjecak(int pcentarX, int pcentarY, int ppolumjer, double ppočetniKut, double ppodatak, double postotak, string naslov, string boja)           //konstruktor
+        public Isjecak(int predniBroj, string pgrafID,int pcentarX, int pcentarY, int ppolumjer, double ppočetniKut, double ppodatak, double postotak, string naslov, string boja)           //konstruktor
         {
+            redniBroj = predniBroj;
+            grafID = pgrafID;
+
             centarX = pcentarX;
             centarY = pcentarY;
             polumjer = ppolumjer;
@@ -80,6 +93,7 @@ namespace TonzaDiplomski {
             naslovIsjecka = naslov;
             isjecakBoja = boja;
             podatak = ppodatak;
+            
 
             x1 = Math.Ceiling(centarX + polumjer * Math.Cos(Math.PI * ppočetniKut / 180));
             y1 = Math.Ceiling(centarY + polumjer * Math.Sin(Math.PI * ppočetniKut / 180));
@@ -91,8 +105,10 @@ namespace TonzaDiplomski {
             xPolaKuta = Math.Ceiling(centarX + polumjer * Math.Cos(Math.PI * (ppočetniKut + ((završniKut - ppočetniKut) / 2)) / 180));
             yPolaKuta = Math.Ceiling(centarY + polumjer * Math.Sin(Math.PI * (ppočetniKut + ((završniKut - ppočetniKut) / 2)) / 180));
 
-            //ispis samog odsječka
-            pathStr = "<path d=\"M";
+            //ispis samog isječka
+
+            
+            pathStr = "<path id=\"" + grafID + "_isjecak_" + redniBroj + "\" d=\"M";
             pathStr += centarX.ToString() + "," + centarY.ToString();
             pathStr += " L" + x1.ToString() + "," + y1.ToString();
             pathStr += " A" + polumjer.ToString() + "," + polumjer.ToString();
@@ -143,16 +159,16 @@ namespace TonzaDiplomski {
             //pathStr = pathStr + "<text x=\"" + x1.ToString() + "\" y=\"" + y2.ToString() + "\" fill=white >" + postotak.ToString();
 
             if (xPolaKuta - centarX > 0) {                              // promijeni alignment ako smo lijevo od centra
-                pathStr = pathStr + "<text x=\"" + xLbl.ToString() + "\" y=\"" + yLbl.ToString() + "\" class=\"pitaPostotciTipsDesni\" >" + postotak.ToString() + "%";
+                pathStr = pathStr + "<text id=\"" + grafID + "_isjecakLabela_" + redniBroj + "\" x=\"" + xLbl.ToString() + "\" y=\"" + yLbl.ToString() + "\" class=\"pitaPostotciTipsDesni\" >" + postotak.ToString() + "%";
             }
             else {
-                pathStr = pathStr + "<text x=\"" + xLbl.ToString() + "\" y=\"" + yLbl.ToString() + "\" class=\"pitaPostotciTipsLijevi\" >" + postotak.ToString() + "%";
+                pathStr = pathStr + "<text id=\"" + grafID + "_isjecakLabela_" + redniBroj + "\" x=\"" + xLbl.ToString() + "\" y=\"" + yLbl.ToString() + "\" class=\"pitaPostotciTipsLijevi\" >" + postotak.ToString() + "%";
             }
             pathStr += "</text>\n</g>\n";
 
             
             // dodaj linije od xLbl i yLbl do početka texta
-            pathStr+="<line x1 =\""+xPolaKuta.ToString()+"\" y1 =\""+yPolaKuta.ToString()+"\" x2 =\""+xLbl.ToString()+"\" y2 =\""+yLbl.ToString()
+            pathStr+= "<line id=\"" + grafID + "_isjecakLinija_" + redniBroj + "\" x1 =\"" + xPolaKuta.ToString()+"\" y1 =\""+yPolaKuta.ToString()+"\" x2 =\""+xLbl.ToString()+"\" y2 =\""+yLbl.ToString()
                     + "\" style=\"stroke:"+isjecakBoja+ "; stroke-width:2\";stroke-linecap=\"round\"/>";
         }
 

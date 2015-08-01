@@ -8,49 +8,68 @@
     </div>--%>
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-6">
             
             <div runat="server" id="PrviOdTri"></div>
 
         </div>
-        <div runat="server" id="DrugiOdTri" class="col-lg-4">
-            Naslov grafa u retku 1 stupcu 2
-            <br />
-
-            
+        <div runat="server" id="DrugiOdTri" class="col-lg-4 col-md-6">
+                        
 
         </div>
-        <div runat="server" id="TreciOdTri" class="col-lg-4">
+        <div runat="server" id="TreciOdTri" class="col-lg-4 col-md-6">
             
            
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-4">
-            Tu radimo na ruke kao priprema za dinamički
-            <br />
-            <svg width="450" height="300" style="border:dotted">
-                <g>
-                    <path d="M350 50 L370 50 L370 70 L350 70 Z" style="fill:red"></path>
-                    <text x="375" y="65"">Prvi item</text>
+        <div runat="server" id="DrugiRedPrvi" class="col-lg-4 col-md-6">
+            
+           
+
+        </div>
+        <div runat="server" id="DrugiRedDrugi"  class="col-lg-4 col-md-6">
+            <svg width="500" height="400" style="border:dotted;">
+                <g id="NaslovStupci">
+                    <text x="225" y="40" class="grafNaslov">Naslov stupčanog grafa</text>
+
                 </g>
-                <g>
-                    <path d="M350 80 L370 80 L370 100 L350 100 Z" style="fill:yellow"></path>
-                    <text x="375" y="95" transform="translate(20,20)" zIndex="6">Drugi item</text>
+                
+                <g id="koordinatniSustav" zIndex="6">
+                    <line x1="30" y1="250" x2="30" y2="50" fill="black" stroke="white" stroke-width="2" ></line>
+                    <line x1="30" y1="350" x2="370" y2="350" fill="black" stroke="white" stroke-width="2"></line>
                 </g>
+                <g id="nasloviKoordinatnogSustava" >
+                    <text alignment-baseline="middle" x="195" y="390" 
+                        class="naslovKoordinatnogSustavaStupci">Naslov X osi</text>
+                    <text alignment-baseline="middle" x="20" y="155" 
+                        transform="rotate(-90,20,150)"
+                        class="naslovKoordinatnogSustavaStupci">Naslov Y osi</text>
+                </g>
+            </svg>
+        </div>
+        <div runat="server" id="DrugiRedTreci"  class="col-lg-4 col-md-6">
+            
+            <svg width="500" height="400" style="border:dotted;">
+                <g id="NaslovStupci1">
+                    <text x="225" y="40" class="grafNaslov">Naslov stupčanog grafa</text>
+
+                </g>
+                
+                <g id="koordinatniSustav1" zIndex="6">
+                    <line id="osX" x1="30" y1="350" x2="30" y2="150" fill="black" stroke="white" stroke-width="2" ></line>
+                    <line id="osY" x1="30" y1="350" x2="370" y2="350" fill="black" stroke="white" stroke-width="2"></line>
+                </g>
+                <g id="nasloviKoordinatnogSustava1" >
+                    <text alignment-baseline="middle" x="195" y="390" 
+                        class="naslovKoordinatnogSustavaStupci">Naslov X osi u zadnjem</text>
+                    <text alignment-baseline="middle" x="20" y="155" 
+                        transform="rotate(-90,20,150)"
+                        class="naslovKoordinatnogSustavaStupci">Naslov Y osi</text>
+                </g>
+
 
             </svg>
-
-        </div>
-        <div class="col-lg-4">
-            Naslov grafa u retku 2 stupcu 2
-            <br />
-            <canvas id="kanvas_2-2" style="border: 1px solid #000000; background-color: white; width: 100%"></canvas>
-        </div>
-        <div class="col-lg-4">
-            Naslov grafa u retku 2 stupcu 3
-            <br />
-            <canvas id="kanvas_2-3" style="border: 1px solid #000000; background-color: white; width: 100%"></canvas>
         </div>
     </div>
 

@@ -390,8 +390,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Isjecak.cs" />
+    <Compile Include="IStupacZaGraf.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Pita.cs" />
+    <Compile Include="PitaGraf.cs" />
     <Compile Include="PodatakZaGraf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -409,6 +410,9 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="StupacZaGraf_v1.cs" />
+    <Compile Include="StupacZaGraf_v2.cs" />
+    <Compile Include="StupciGraf.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

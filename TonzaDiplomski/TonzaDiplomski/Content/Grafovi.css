@@ -4,10 +4,10 @@
     font-size:22px;
     text-align:center;
     text-anchor:middle;
-
-
 }
 
+
+/*postavke pita grafa*/
 .pitaLegenda {
     fill:white;
     font-weight:normal;
@@ -29,7 +29,7 @@
 
 .pitaSVG {
     border:dotted;
-    width:100%;
+    /*width:100%;*/
 
 }
 
@@ -49,4 +49,48 @@
     text-anchor:end;
 }
 
+.naslovKoordinatnogSustavaStupci{
+    fill:white;
+    text-anchor:middle;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:16px;
+    
+}
+/* postavke stupci grafa*/
+.stupciSVG {
+    border: dotted;
+    /*width:100%;*/
+}
+.stupciKoordinatniSustav {
+    fill:black;
+    stroke:white;
+    stroke-width:2;
 
+}
+
+.stupciNaslov {
+    fill:white;
+    text-anchor:start;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:14px;
+    
+
+}
+
+.stupciv2Naslov {
+    fill:white;
+    text-anchor:middle;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:14px;
+}
+
+.stupciv2Labele {
+    fill:white;
+    text-anchor:end;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:14px;
+}
