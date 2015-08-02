@@ -66,7 +66,6 @@
     fill:black;
     stroke:white;
     stroke-width:2;
-
 }
 
 .stupciNaslov {
@@ -75,8 +74,6 @@
     font-weight:normal;
     font-variant:normal;
     font-size:14px;
-    
-
 }
 
 .stupciv2Naslov {
@@ -93,4 +90,45 @@
     font-weight:normal;
     font-variant:normal;
     font-size:14px;
+}
+
+/*postavke crta Grafa*/
+.crtaGrafCrta{
+    stroke:white;
+    stroke-width:1;
+    fill:none;
+    
+}
+.crtaGrafManjiKruzic {
+    stroke:white; 
+    stroke-width:1;
+    fill:white;
+}
+
+.crtaGrafVeciKruzic {
+    stroke:white;
+    stroke-width:1;
+    fill:none;
+}
+.crtaGrafLabele {
+    text-anchor:end;
+    fill:white;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:12px;
+    text-shadow:2px 2px 2px #333;
+}
+.crtaGrafPodaci {
+    text-anchor:middle;
+    fill:white;
+    text-shadow:2px 2px 2px #333;
+    font-weight:normal;
+    font-variant:normal;
+    font-size:12px;
+}
+
+.crtaGrafKruzicNaOsiX {
+    stroke:white; 
+    stroke-width:1;
+    fill:grey;
 }

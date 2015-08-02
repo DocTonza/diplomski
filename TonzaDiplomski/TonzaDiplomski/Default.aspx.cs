@@ -55,11 +55,23 @@ namespace TonzaDiplomski
             podaci3.Add(new PodatakZaGraf("Ema", 25));
             podaci3.Add(new PodatakZaGraf("Ema", 25));
 
-            podaci4.Add(new PodatakZaGraf("Domagoj", 12));
-            podaci4.Add(new PodatakZaGraf("Valentina", 43));
-            podaci4.Add(new PodatakZaGraf("Matko", 18));
-            podaci4.Add(new PodatakZaGraf("Ana", 21));
-            podaci4.Add(new PodatakZaGraf("Dina", 134));
+            podaci4.Add(new PodatakZaGraf("1999", 12));
+            podaci4.Add(new PodatakZaGraf("2000", 43));
+            podaci4.Add(new PodatakZaGraf("2001", 18));
+            podaci4.Add(new PodatakZaGraf("2002", 21));
+            podaci4.Add(new PodatakZaGraf("2003", 134));
+            podaci4.Add(new PodatakZaGraf("2004", 765));
+            podaci4.Add(new PodatakZaGraf("2005", 123));
+            podaci4.Add(new PodatakZaGraf("2006", 34));
+            podaci4.Add(new PodatakZaGraf("2007", 57));
+            podaci4.Add(new PodatakZaGraf("2008", 76));
+            podaci4.Add(new PodatakZaGraf("2009",67));
+            podaci4.Add(new PodatakZaGraf("2010", 123));
+            podaci4.Add(new PodatakZaGraf("2011", 321));
+            podaci4.Add(new PodatakZaGraf("2012", 45));
+            podaci4.Add(new PodatakZaGraf("2013", 78));
+            podaci4.Add(new PodatakZaGraf("2014", 97));
+            podaci4.Add(new PodatakZaGraf("2015", 235));
 
             podaci5.Add(new PodatakZaGraf("Domagoj", 124));
             podaci5.Add(new PodatakZaGraf("Valentina", 163));
@@ -109,6 +121,9 @@ namespace TonzaDiplomski
             TreciOdTri.InnerHtml = pita3od3.ToString();
             //TreciOdTri.InnerHtml = "Treći";
 
+
+            CrtaGraf crta1od3 = new CrtaGraf("Ovo je naslov linijskog grafa", podaci4, 1);
+            DrugiRedPrvi.InnerHtml = crta1od3.ToString();
 
             StupciGraf stupci2od3 = new StupciGraf("ovo je naslov drugih stupaca", podaci5,1);
             DrugiRedDrugi.InnerHtml = stupci2od3.ToString();
