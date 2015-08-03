@@ -12,7 +12,7 @@ namespace TonzaDiplomski {
 
         int centarX, centarY, polumjer;       // ovo bi trebali dobiti kao parametre
         double početniKut, završniKut;        // koji je početni kut (od kuda krećemo) i koliki je kut (točnije postotak) koji prikazuje isječak
-        double x1, y1, x2, y2, xLbl, yLbl,xPolaKuta,yPolaKuta;               // početne i završne točke na kružnici (tu počinje i završava luk; računamo iz početnogKuta (x1,1) i završnogKuta (x2,y2))
+        double x1, y1, x2, y2, xLbl, yLbl, xPolaKuta, yPolaKuta;               // početne i završne točke na kružnici (tu počinje i završava luk; računamo iz početnogKuta (x1,1) i završnogKuta (x2,y2))
         string naslovIsjecka;
         string isjecakBoja;
         string pathStr;                      // ovdje nam piše path dio koji zapravo crta isječak (<path d=...)
@@ -81,7 +81,7 @@ namespace TonzaDiplomski {
             }
         }
 
-        public Isjecak(int predniBroj, string pgrafID,int pcentarX, int pcentarY, int ppolumjer, double ppočetniKut, double ppodatak, double postotak, string naslov, string boja)           //konstruktor
+        public Isjecak(int predniBroj, string pgrafID, int pcentarX, int pcentarY, int ppolumjer, double ppočetniKut, double ppodatak, double postotak, string naslov, string boja)           //konstruktor
         {
             redniBroj = predniBroj;
             grafID = pgrafID;
@@ -93,7 +93,7 @@ namespace TonzaDiplomski {
             naslovIsjecka = naslov;
             isjecakBoja = boja;
             podatak = ppodatak;
-            
+
 
             x1 = Math.Ceiling(centarX + polumjer * Math.Cos(Math.PI * ppočetniKut / 180));
             y1 = Math.Ceiling(centarY + polumjer * Math.Sin(Math.PI * ppočetniKut / 180));
@@ -107,7 +107,7 @@ namespace TonzaDiplomski {
 
             //ispis samog isječka
 
-            
+
             pathStr = "<path id=\"" + grafID + "_isjecak_" + redniBroj + "\" d=\"M";
             pathStr += centarX.ToString() + "," + centarY.ToString();
             pathStr += " L" + x1.ToString() + "," + y1.ToString();
@@ -119,40 +119,52 @@ namespace TonzaDiplomski {
 
             // provjeri gdje smo u odnosu na centar pite. 
             // Ako smo iznad, pomakni labele gore, inače dolje.
-
+            int kvadrant;
             if (xPolaKuta - centarX > 0) {                              // desno od centra smo, povećaj X koordinatu.
-                
-                xLbl = xPolaKuta+ 5;
+                kvadrant = 1;
+                xLbl = xPolaKuta + 5;
             }
             else {                                                      // lijevo smo od centra, smanji X koordinatu
                 xLbl = xPolaKuta - 5; // (5+((postotak<5)? 20:0));
-               
+                kvadrant = 4;
+
             }
             if (yPolaKuta - centarY > 0) {                              // ispod centra smo, povećaj Y koordinatu
-                
+                kvadrant = (kvadrant == 1 ? 2 : 3);
                 yLbl = yPolaKuta + 10;                                  // ovo je više zbog veličine slova; računa se donja lijeva strana teksta
             }
-            else {
+            else {                                                      // iznad centra smo, smanji Y koordinatu
+                kvadrant = (kvadrant == 1 ? 1 : 4);
                 yLbl = yPolaKuta - 5;// (5 + ((postotak < 5) ? 20 : 0));                                  
             }
 
 
+
             // ako već nešto piše u labelama, uspodedi s postojećim i popravi ako se sijeku
-            if (prijasnjeLabele.Count>1) {
-                if (Math.Abs(xLbl - prijasnjeLabele.Last().xLbl) < 35) {     //sijeku se po X osi
-                    if (Math.Abs(yLbl - prijasnjeLabele.Last().yLbl) < 10) {
-                        //sijeku se pomakni je gore ili dolje, ovisno da li si u gornjem ili donjem kvadrantu
-                        xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX < 0 ? -18 : 18);                                        // 14
+            if (prijasnjeLabele.Count > 1) {
+                if (kvadrant == 1 || kvadrant == 2) { //ako smo desno od osi Y, onda prošla labela ne smije imati manji Y od sadašnje ( ne smije biti više na grafu)
+                    if (Math.Abs(xLbl - prijasnjeLabele.Last().xLbl) < 35) {     //sijeku se po X osi
+                        if (Math.Abs(yLbl - prijasnjeLabele.Last().yLbl) < 10 || prijasnjeLabele.Last().yLbl > yLbl) {
+                            //sijeku se pomakni je gore ili dolje, ovisno da li si u gornjem ili donjem kvadrantu
+                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX < 0 ? -18 : 18);                                        // 14
 
-                        yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY > 0?-15:15);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
+                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY > 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
+                        }
                     }
-
-                    
                 }
+                else {      //ako smo lijevo od osi Y, onda prošla labela ne smije imati veći Y od sadašnje ( ne smije biti niže na grafu)
+                    if (Math.Abs(xLbl - prijasnjeLabele.Last().xLbl) < 35) {     //sijeku se po X osi
+                        if (Math.Abs(yLbl - prijasnjeLabele.Last().yLbl) < 10 || prijasnjeLabele.Last().yLbl < yLbl) {
+                            //sijeku se pomakni je gore ili dolje, ovisno da li si u gornjem ili donjem kvadrantu
+                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX < 0 ? -18 : 18);                                        // 14
 
+                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY > 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
+                        }
+                    }
+                }
             }
 
-            
+
             prijasnjeLabele.Add(new Labele(xLbl, yLbl));
 
             pathStr = pathStr + "<g transform=\"Translate(0,0)\" zIndex=\"1\">";
@@ -166,10 +178,10 @@ namespace TonzaDiplomski {
             }
             pathStr += "</text>\n</g>\n";
 
-            
+
             // dodaj linije od xLbl i yLbl do početka texta
-            pathStr+= "<line id=\"" + grafID + "_isjecakLinija_" + redniBroj + "\" x1 =\"" + xPolaKuta.ToString()+"\" y1 =\""+yPolaKuta.ToString()+"\" x2 =\""+xLbl.ToString()+"\" y2 =\""+yLbl.ToString()
-                    + "\" style=\"stroke:"+isjecakBoja+ "; stroke-width:2\";stroke-linecap=\"round\"/>";
+            pathStr += "<line id=\"" + grafID + "_isjecakLinija_" + redniBroj + "\" x1 =\"" + xPolaKuta.ToString() + "\" y1 =\"" + yPolaKuta.ToString() + "\" x2 =\"" + xLbl.ToString() + "\" y2 =\"" + yLbl.ToString()
+                    + "\" style=\"stroke:" + isjecakBoja + "; stroke-width:2\";stroke-linecap=\"round\"/>";
         }
 
         void srediLabele() {

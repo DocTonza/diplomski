@@ -45,7 +45,7 @@ namespace TonzaDiplomski
             podaci3.Add(new PodatakZaGraf("Davor", 14));
             podaci3.Add(new PodatakZaGraf("Paola", 12));
             podaci3.Add(new PodatakZaGraf("Laura", 13));
-            podaci3.Add(new PodatakZaGraf("Ema", 25));
+            podaci3.Add(new PodatakZaGraf("Goran K", 625));
             podaci3.Add(new PodatakZaGraf("Ema", 25));
             podaci3.Add(new PodatakZaGraf("Ema", 25));
             podaci3.Add(new PodatakZaGraf("Ema", 25));
