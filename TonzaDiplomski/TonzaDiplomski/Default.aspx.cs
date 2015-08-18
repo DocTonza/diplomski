@@ -9,8 +9,24 @@ namespace TonzaDiplomski
 {
     public partial class _Default : Page
     {
+
+        // kako generirati dinamički objekt sa dinamičkim imenom ???... Napraviti listu tih objekata
+        List<System.Web.UI.HtmlControls.HtmlGenericControl> celijaSGrafom = new List<System.Web.UI.HtmlControls.HtmlGenericControl>();
+        Semafor semafor01;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //pokupi Cookie da vidimo koji semafor hoćemo otvoriti
+            string odabraniSemafor="";
+            if (Request.Cookies["OdabraniSemafor"] != null ) {//&& !IsPostBack) {
+                odabraniSemafor = Request.Cookies["OdabraniSemafor"]["odabraniSemafor"];
+            }
+            else {
+                Response.Redirect("OdaberiSemafor.aspx");
+            }
+            
+            
             List<PodatakZaGraf> podaci1 = new List<PodatakZaGraf>();
             List<PodatakZaGraf> podaci2 = new List<PodatakZaGraf>();
             List<PodatakZaGraf> podaci3 = new List<PodatakZaGraf>();
@@ -103,9 +119,53 @@ namespace TonzaDiplomski
             podaci6.Add(new PodatakZaGraf("Nikola", 56));
             podaci6.Add(new PodatakZaGraf("Martin", 48));
 
-         
+
+            // tu stvaramo prvi red
+
+            // potrebno je saznati koji semafor učitavamo. To nam piše u cookie-u. Ako je prazno, onda pokaži stranicu za odabir semafora.
+
+
+            // trebamo metodu koja će stvoriti red. Koliko red ima stupaca ovisi o ulaznom parametru. Na temelju toga se mijenjaju i klase koje formatiraju red.
+            // također, moramo paziti da svaki div dobije svoj jedinsveni id.  ID će glasiti: RED{n}_S{m} gdje su n i m broj redtka u stupca
+            // da li trebamo svakom retku odmah poslati i koje podatke pokazuje?
+            // kako se prebacujemo na novu stranicu? da li je potrebno svaki div označiti i sa brojem stranice, s obzirom da stranice mogu izgledati drugačije po broju redaka i stupaca?
+
+            //Semafor 
+                semafor01 = new Semafor(odabraniSemafor);
+            //stranicaSemafora Stranica1 = new stranicaSemafora("Stranica1");
+
+            //glavniPlaceholder.Controls.Add(semafor01);
+            timerZaStranice.Enabled = false;
+            timerZaStranice.Interval = (int)Session["periodOsvjezavanjaStranice"];
+            divZaStranice.Controls.Add(semafor01);
+            timerZaStranice.Enabled = true;
+            
+
+            
+            //generirajRedak(rbRetka,brojStupaca);
+           
+            System.Web.UI.HtmlControls.HtmlGenericControl PrviOdTri = new
+                                                    System.Web.UI.HtmlControls.HtmlGenericControl();
+            PrviOdTri.ID = "PrviOdTri";
+            PrviOdTri.Attributes["class"]= "col-lg-4 col-md-6";
+
+            System.Web.UI.HtmlControls.HtmlGenericControl DrugiOdTri = new
+                                                    System.Web.UI.HtmlControls.HtmlGenericControl("div");
+            DrugiOdTri.ID = "DrugiOdTri";
+            DrugiOdTri.Attributes["class"] = "col-lg-4 col-md-6";
+
+            System.Web.UI.HtmlControls.HtmlGenericControl TreciOdTri = new
+                                                    System.Web.UI.HtmlControls.HtmlGenericControl();
+            TreciOdTri.ID = "TreciOdTri";
+            TreciOdTri.Attributes["class"] = "col-lg-4 col-md-6";
+
+            //PrviRed.Controls.Add(PrviOdTri);
+            //PrviRed.Controls.Add(DrugiOdTri);
+            //PrviRed.Controls.Add(TreciOdTri);
+
 
             PitaGraf pita1od3 = new PitaGraf("oVo je naslov prve pite",podaci1);
+         
             PrviOdTri.InnerHtml = pita1od3.ToString();
             //PrviOdTri.InnerHtml = "prvi";
 
@@ -123,13 +183,34 @@ namespace TonzaDiplomski
 
 
             CrtaGraf crta1od3 = new CrtaGraf("Ovo je naslov linijskog grafa", podaci4, 1);
-            DrugiRedPrvi.InnerHtml = crta1od3.ToString();
+            //DrugiRedPrvi.InnerHtml = crta1od3.ToString();
 
             StupciGraf stupci2od3 = new StupciGraf("ovo je naslov drugih stupaca", podaci5,1);
-            DrugiRedDrugi.InnerHtml = stupci2od3.ToString();
+            //DrugiRedDrugi.InnerHtml = stupci2od3.ToString();
 
             StupciGraf stupci3od3 = new StupciGraf("ovo je naslov trećih stupaca", podaci6,2);
-            DrugiRedTreci.InnerHtml = stupci3od3.ToString();
+            //DrugiRedTreci.InnerHtml = stupci3od3.ToString();
+        }
+        public void generirajRedak(int rBr, int BrojStupaca) {
+            for (int i = 1; i <= BrojStupaca; ++i) { 
+                celijaSGrafom.Add(new System.Web.UI.HtmlControls.HtmlGenericControl());
+                celijaSGrafom.Last().ID = "";
+                celijaSGrafom.Last().Attributes["class"]= "col-lg-4 col-md-6";
+            }
+
+
+        }
+
+        protected void timerZaStranice_Tick(object sender, EventArgs e) {
+            // System.Web.UI.HtmlControls.HtmlGenericControl jura = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+            // jura.InnerHtml = "ovo je Jura </br>" + DateTime.Now;
+            // divZaStranice.Controls.Add(jura);
+
+            //semafor01.dohvatiNaslovSemafora();
+            timerZaStranice.Interval = (int)Session["periodOsvjezavanjaStranice"];
+            // semafor01.Controls.Clear();
+            // semafor01.Controls.Add(jura);
+
         }
     }
 }

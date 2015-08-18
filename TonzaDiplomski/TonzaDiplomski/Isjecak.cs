@@ -184,9 +184,7 @@ namespace TonzaDiplomski {
                     + "\" style=\"stroke:" + isjecakBoja + "; stroke-width:2\";stroke-linecap=\"round\"/>";
         }
 
-        void srediLabele() {
 
-        }
 
         //style="stroke:rgb(255,0,0);stroke-width:2"
         public override string ToString() {

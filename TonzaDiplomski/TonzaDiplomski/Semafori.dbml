@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Semafori" Class="SemaforiDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Semafori.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SemaforiConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblSemafor" Member="tblSemafors">
+    <Type Name="tblSemafor">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="tblSemafor_tblStranica" Member="tblStranicas" ThisKey="Id" OtherKey="semaforID" Type="tblStranica" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUpit" Member="tblUpits">
+    <Type Name="tblUpit">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="upit" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="tblUpit_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="upitID" Type="tblCelija" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVrstaGrafa" Member="tblVrstaGrafas">
+    <Type Name="tblVrstaGrafa">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Naziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="tblVrstaGrafa_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="grafID" Type="tblCelija" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRedak" Member="tblRedaks">
+    <Type Name="tblRedak">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="stranicaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblRedak_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="redakID" Type="tblCelija" />
+      <Association Name="tblStranica_tblRedak" Member="tblStranica" ThisKey="stranicaID" OtherKey="Id" Type="tblStranica" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCelija" Member="tblCelijas">
+    <Type Name="tblCelija">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="redakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="grafID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="upitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblUpit_tblCelija" Member="tblUpit" ThisKey="upitID" OtherKey="id" Type="tblUpit" IsForeignKey="true" />
+      <Association Name="tblVrstaGrafa_tblCelija" Member="tblVrstaGrafa" ThisKey="grafID" OtherKey="id" Type="tblVrstaGrafa" IsForeignKey="true" />
+      <Association Name="tblRedak_tblCelija" Member="tblRedak" ThisKey="redakID" OtherKey="id" Type="tblRedak" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStranica" Member="tblStranicas">
+    <Type Name="tblStranica">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="naziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="refreshPeriod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="semaforID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="brojRedova" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblStranica_tblRedak" Member="tblRedaks" ThisKey="Id" OtherKey="stranicaID" Type="tblRedak" />
+      <Association Name="tblSemafor_tblStranica" Member="tblSemafor" ThisKey="semaforID" OtherKey="Id" Type="tblSemafor" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

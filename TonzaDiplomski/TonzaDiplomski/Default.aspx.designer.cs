@@ -13,57 +13,39 @@ namespace TonzaDiplomski {
     public partial class _Default {
         
         /// <summary>
-        /// PrviOdTri control.
+        /// glavniPlaceholder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PrviOdTri;
+        protected global::System.Web.UI.WebControls.PlaceHolder glavniPlaceholder;
         
         /// <summary>
-        /// DrugiOdTri control.
+        /// timerZaStranice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DrugiOdTri;
+        protected global::System.Web.UI.Timer timerZaStranice;
         
         /// <summary>
-        /// TreciOdTri control.
+        /// Panel01 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl TreciOdTri;
+        protected global::System.Web.UI.UpdatePanel Panel01;
         
         /// <summary>
-        /// DrugiRedPrvi control.
+        /// divZaStranice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DrugiRedPrvi;
-        
-        /// <summary>
-        /// DrugiRedDrugi control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DrugiRedDrugi;
-        
-        /// <summary>
-        /// DrugiRedTreci control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DrugiRedTreci;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divZaStranice;
     }
 }
