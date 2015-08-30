@@ -8,37 +8,60 @@ using System.Data.SqlClient;
 namespace TonzaDiplomski {
     public class celijaRetkaSemafora : System.Web.UI.HtmlControls.HtmlGenericControl {
 
-        public celijaRetkaSemafora(string pID,int redakID) {
+
+        List<PodatakZaGraf> podaciZaGraf = new List<PodatakZaGraf>();
+
+        string naslovCelije;
+        public celijaRetkaSemafora(string pID,int celijaID) {
             ID = pID;
             TagName = "div";
-            InnerHtml = ID + DateTime.Now;
+            //InnerHtml = ID + DateTime.Now;
+            dohvatiPodatke(celijaID);
 
-            dohvatiPodatke();
+            PitaGraf pita = new PitaGraf(naslovCelije, podaciZaGraf);
+            InnerHtml = pita.ToString();
+
+            
         }
 
-        void dohvatiPodatke() {
-            // tu sada dohvaćamo podatke i vrstu grafa
-            //string connString = WebConfigurationManager.ConnectionStrings["SemaforiDBContext"].ConnectionString;
-            //SqlConnection kon = new SqlConnection(connString);
-            //SqlCommand komanda = new SqlCommand();
-            //komanda.Connection = kon;
-            //komanda.CommandType = System.Data.CommandType.Text;
-            //komanda.CommandText = "Select * from celije";
+        void dohvatiPodatke(int celijaID) {
+            /* tu sada dohvaćamo podatke i vrstu grafa
+            od podataka trebamo: upit, server DB, 
+            */
 
-            //kon.Open();
-            //int brojRedova = komanda.ExecuteNonQuery();
-            //kon.Close();
+            SemaforiDataContext db = new SemaforiDataContext();
+            IEnumerable<viewCelijaPodaci>
+               celijaPodaci = from cP in db.viewCelijaPodacis
+                        where cP.id == celijaID
+                        select cP;
 
-            //SemaforiDataContext db = new SemaforiDataContext();
-            //IEnumerable<tblStranica> stranice = from p in db.tblStranicas
-            //                                 select p;
+            string connstring;
+            naslovCelije = celijaPodaci.Last().upitNaziv;
 
-            //int i = stranice.Count();
-            //int a = 0;
+            //connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Integrated Security = False; User ID=tonza;Password=tonza";
+            connstring = "Server = "+celijaPodaci.Last().serverString+";";
+            connstring += "AttachDbFileName= " + celijaPodaci.Last().dbAttachString + ";";
+            connstring += "Database = " + celijaPodaci.Last().dbNaziv + ";";
+            connstring += "Integrated Security = " + (celijaPodaci.Last().integratedAuth==true ? "True" : "False")+";";
+            connstring += "User ID=" + celijaPodaci.Last().korisnik + ";";
+            connstring += "Password=" + celijaPodaci.Last().lozinka + ";";
 
-            //foreach (tblStranica stranica in stranice) {
-            //    stranica.
-            //}
+            SqlConnection myConn = new SqlConnection(connstring);
+            SqlCommand cmd = new SqlCommand(celijaPodaci.Last().upit, myConn);
+
+            myConn.Open();
+
+            string bla;
+            // napuni podatke u listu podataka za graf
+            using (SqlDataReader oReader = cmd.ExecuteReader()) {
+                while (oReader.Read()) {
+
+                    podaciZaGraf.Add(new PodatakZaGraf(oReader.GetValue(0).ToString(), (double)(decimal)oReader.GetValue(1)));
+                 
+                }
+
+                myConn.Close();
+            }
 
 
         }

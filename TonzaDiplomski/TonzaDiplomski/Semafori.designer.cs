@@ -33,12 +33,6 @@ namespace TonzaDiplomski
     partial void InserttblSemafor(tblSemafor instance);
     partial void UpdatetblSemafor(tblSemafor instance);
     partial void DeletetblSemafor(tblSemafor instance);
-    partial void InserttblUpit(tblUpit instance);
-    partial void UpdatetblUpit(tblUpit instance);
-    partial void DeletetblUpit(tblUpit instance);
-    partial void InserttblVrstaGrafa(tblVrstaGrafa instance);
-    partial void UpdatetblVrstaGrafa(tblVrstaGrafa instance);
-    partial void DeletetblVrstaGrafa(tblVrstaGrafa instance);
     partial void InserttblRedak(tblRedak instance);
     partial void UpdatetblRedak(tblRedak instance);
     partial void DeletetblRedak(tblRedak instance);
@@ -48,6 +42,18 @@ namespace TonzaDiplomski
     partial void InserttblStranica(tblStranica instance);
     partial void UpdatetblStranica(tblStranica instance);
     partial void DeletetblStranica(tblStranica instance);
+    partial void InserttblVrstaGrafa(tblVrstaGrafa instance);
+    partial void UpdatetblVrstaGrafa(tblVrstaGrafa instance);
+    partial void DeletetblVrstaGrafa(tblVrstaGrafa instance);
+    partial void InserttblUpit(tblUpit instance);
+    partial void UpdatetblUpit(tblUpit instance);
+    partial void DeletetblUpit(tblUpit instance);
+    partial void InserttblServer(tblServer instance);
+    partial void UpdatetblServer(tblServer instance);
+    partial void DeletetblServer(tblServer instance);
+    partial void InserttblDB(tblDB instance);
+    partial void UpdatetblDB(tblDB instance);
+    partial void DeletetblDB(tblDB instance);
     #endregion
 		
 		public SemaforiDataContext() : 
@@ -88,22 +94,6 @@ namespace TonzaDiplomski
 			}
 		}
 		
-		public System.Data.Linq.Table<tblUpit> tblUpits
-		{
-			get
-			{
-				return this.GetTable<tblUpit>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblVrstaGrafa> tblVrstaGrafas
-		{
-			get
-			{
-				return this.GetTable<tblVrstaGrafa>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblRedak> tblRedaks
 		{
 			get
@@ -125,6 +115,46 @@ namespace TonzaDiplomski
 			get
 			{
 				return this.GetTable<tblStranica>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblVrstaGrafa> tblVrstaGrafas
+		{
+			get
+			{
+				return this.GetTable<tblVrstaGrafa>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblUpit> tblUpits
+		{
+			get
+			{
+				return this.GetTable<tblUpit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblServer> tblServers
+		{
+			get
+			{
+				return this.GetTable<tblServer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblDB> tblDBs
+		{
+			get
+			{
+				return this.GetTable<tblDB>();
+			}
+		}
+		
+		public System.Data.Linq.Table<viewCelijaPodaci> viewCelijaPodacis
+		{
+			get
+			{
+				return this.GetTable<viewCelijaPodaci>();
 			}
 		}
 	}
@@ -240,258 +270,6 @@ namespace TonzaDiplomski
 		{
 			this.SendPropertyChanging();
 			entity.tblSemafor = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUpit")]
-	public partial class tblUpit : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _upit;
-		
-		private string _naziv;
-		
-		private EntitySet<tblCelija> _tblCelijas;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnupitChanging(string value);
-    partial void OnupitChanged();
-    partial void OnnazivChanging(string value);
-    partial void OnnazivChanged();
-    #endregion
-		
-		public tblUpit()
-		{
-			this._tblCelijas = new EntitySet<tblCelija>(new Action<tblCelija>(this.attach_tblCelijas), new Action<tblCelija>(this.detach_tblCelijas));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_upit", DbType="VarChar(5000)")]
-		public string upit
-		{
-			get
-			{
-				return this._upit;
-			}
-			set
-			{
-				if ((this._upit != value))
-				{
-					this.OnupitChanging(value);
-					this.SendPropertyChanging();
-					this._upit = value;
-					this.SendPropertyChanged("upit");
-					this.OnupitChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="VarChar(200)")]
-		public string naziv
-		{
-			get
-			{
-				return this._naziv;
-			}
-			set
-			{
-				if ((this._naziv != value))
-				{
-					this.OnnazivChanging(value);
-					this.SendPropertyChanging();
-					this._naziv = value;
-					this.SendPropertyChanged("naziv");
-					this.OnnazivChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUpit_tblCelija", Storage="_tblCelijas", ThisKey="id", OtherKey="upitID")]
-		public EntitySet<tblCelija> tblCelijas
-		{
-			get
-			{
-				return this._tblCelijas;
-			}
-			set
-			{
-				this._tblCelijas.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblCelijas(tblCelija entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblUpit = this;
-		}
-		
-		private void detach_tblCelijas(tblCelija entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblUpit = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVrstaGrafa")]
-	public partial class tblVrstaGrafa : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _Naziv;
-		
-		private EntitySet<tblCelija> _tblCelijas;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnNazivChanging(string value);
-    partial void OnNazivChanged();
-    #endregion
-		
-		public tblVrstaGrafa()
-		{
-			this._tblCelijas = new EntitySet<tblCelija>(new Action<tblCelija>(this.attach_tblCelijas), new Action<tblCelija>(this.detach_tblCelijas));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Naziv", DbType="NChar(10)")]
-		public string Naziv
-		{
-			get
-			{
-				return this._Naziv;
-			}
-			set
-			{
-				if ((this._Naziv != value))
-				{
-					this.OnNazivChanging(value);
-					this.SendPropertyChanging();
-					this._Naziv = value;
-					this.SendPropertyChanged("Naziv");
-					this.OnNazivChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVrstaGrafa_tblCelija", Storage="_tblCelijas", ThisKey="id", OtherKey="grafID")]
-		public EntitySet<tblCelija> tblCelijas
-		{
-			get
-			{
-				return this._tblCelijas;
-			}
-			set
-			{
-				this._tblCelijas.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblCelijas(tblCelija entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblVrstaGrafa = this;
-		}
-		
-		private void detach_tblCelijas(tblCelija entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblVrstaGrafa = null;
 		}
 	}
 	
@@ -664,11 +442,11 @@ namespace TonzaDiplomski
 		
 		private System.Nullable<int> _upitID;
 		
-		private EntityRef<tblUpit> _tblUpit;
+		private EntityRef<tblRedak> _tblRedak;
 		
 		private EntityRef<tblVrstaGrafa> _tblVrstaGrafa;
 		
-		private EntityRef<tblRedak> _tblRedak;
+		private EntityRef<tblUpit> _tblUpit;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -686,9 +464,9 @@ namespace TonzaDiplomski
 		
 		public tblCelija()
 		{
-			this._tblUpit = default(EntityRef<tblUpit>);
-			this._tblVrstaGrafa = default(EntityRef<tblVrstaGrafa>);
 			this._tblRedak = default(EntityRef<tblRedak>);
+			this._tblVrstaGrafa = default(EntityRef<tblVrstaGrafa>);
+			this._tblUpit = default(EntityRef<tblUpit>);
 			OnCreated();
 		}
 		
@@ -784,36 +562,36 @@ namespace TonzaDiplomski
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUpit_tblCelija", Storage="_tblUpit", ThisKey="upitID", OtherKey="id", IsForeignKey=true)]
-		public tblUpit tblUpit
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblRedak_tblCelija", Storage="_tblRedak", ThisKey="redakID", OtherKey="id", IsForeignKey=true)]
+		public tblRedak tblRedak
 		{
 			get
 			{
-				return this._tblUpit.Entity;
+				return this._tblRedak.Entity;
 			}
 			set
 			{
-				tblUpit previousValue = this._tblUpit.Entity;
+				tblRedak previousValue = this._tblRedak.Entity;
 				if (((previousValue != value) 
-							|| (this._tblUpit.HasLoadedOrAssignedValue == false)))
+							|| (this._tblRedak.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._tblUpit.Entity = null;
+						this._tblRedak.Entity = null;
 						previousValue.tblCelijas.Remove(this);
 					}
-					this._tblUpit.Entity = value;
+					this._tblRedak.Entity = value;
 					if ((value != null))
 					{
 						value.tblCelijas.Add(this);
-						this._upitID = value.id;
+						this._redakID = value.id;
 					}
 					else
 					{
-						this._upitID = default(Nullable<int>);
+						this._redakID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("tblUpit");
+					this.SendPropertyChanged("tblRedak");
 				}
 			}
 		}
@@ -852,36 +630,36 @@ namespace TonzaDiplomski
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblRedak_tblCelija", Storage="_tblRedak", ThisKey="redakID", OtherKey="id", IsForeignKey=true)]
-		public tblRedak tblRedak
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUpit_tblCelija", Storage="_tblUpit", ThisKey="upitID", OtherKey="id", IsForeignKey=true)]
+		public tblUpit tblUpit
 		{
 			get
 			{
-				return this._tblRedak.Entity;
+				return this._tblUpit.Entity;
 			}
 			set
 			{
-				tblRedak previousValue = this._tblRedak.Entity;
+				tblUpit previousValue = this._tblUpit.Entity;
 				if (((previousValue != value) 
-							|| (this._tblRedak.HasLoadedOrAssignedValue == false)))
+							|| (this._tblUpit.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._tblRedak.Entity = null;
+						this._tblUpit.Entity = null;
 						previousValue.tblCelijas.Remove(this);
 					}
-					this._tblRedak.Entity = value;
+					this._tblUpit.Entity = value;
 					if ((value != null))
 					{
 						value.tblCelijas.Add(this);
-						this._redakID = value.id;
+						this._upitID = value.id;
 					}
 					else
 					{
-						this._redakID = default(Nullable<int>);
+						this._upitID = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("tblRedak");
+					this.SendPropertyChanged("tblUpit");
 				}
 			}
 		}
@@ -1131,6 +909,1021 @@ namespace TonzaDiplomski
 		{
 			this.SendPropertyChanging();
 			entity.tblStranica = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVrstaGrafa")]
+	public partial class tblVrstaGrafa : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _Naziv;
+		
+		private EntitySet<tblCelija> _tblCelijas;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNazivChanging(string value);
+    partial void OnNazivChanged();
+    #endregion
+		
+		public tblVrstaGrafa()
+		{
+			this._tblCelijas = new EntitySet<tblCelija>(new Action<tblCelija>(this.attach_tblCelijas), new Action<tblCelija>(this.detach_tblCelijas));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Naziv", DbType="NChar(10)")]
+		public string Naziv
+		{
+			get
+			{
+				return this._Naziv;
+			}
+			set
+			{
+				if ((this._Naziv != value))
+				{
+					this.OnNazivChanging(value);
+					this.SendPropertyChanging();
+					this._Naziv = value;
+					this.SendPropertyChanged("Naziv");
+					this.OnNazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVrstaGrafa_tblCelija", Storage="_tblCelijas", ThisKey="id", OtherKey="grafID")]
+		public EntitySet<tblCelija> tblCelijas
+		{
+			get
+			{
+				return this._tblCelijas;
+			}
+			set
+			{
+				this._tblCelijas.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblCelijas(tblCelija entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVrstaGrafa = this;
+		}
+		
+		private void detach_tblCelijas(tblCelija entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblVrstaGrafa = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblUpit")]
+	public partial class tblUpit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _upit;
+		
+		private string _naziv;
+		
+		private System.Nullable<int> _serverID;
+		
+		private System.Nullable<int> _dbID;
+		
+		private EntitySet<tblCelija> _tblCelijas;
+		
+		private EntityRef<tblServer> _tblServer;
+		
+		private EntityRef<tblDB> _tblDB;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnupitChanging(string value);
+    partial void OnupitChanged();
+    partial void OnnazivChanging(string value);
+    partial void OnnazivChanged();
+    partial void OnserverIDChanging(System.Nullable<int> value);
+    partial void OnserverIDChanged();
+    partial void OndbIDChanging(System.Nullable<int> value);
+    partial void OndbIDChanged();
+    #endregion
+		
+		public tblUpit()
+		{
+			this._tblCelijas = new EntitySet<tblCelija>(new Action<tblCelija>(this.attach_tblCelijas), new Action<tblCelija>(this.detach_tblCelijas));
+			this._tblServer = default(EntityRef<tblServer>);
+			this._tblDB = default(EntityRef<tblDB>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_upit", DbType="VarChar(5000)")]
+		public string upit
+		{
+			get
+			{
+				return this._upit;
+			}
+			set
+			{
+				if ((this._upit != value))
+				{
+					this.OnupitChanging(value);
+					this.SendPropertyChanging();
+					this._upit = value;
+					this.SendPropertyChanged("upit");
+					this.OnupitChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="VarChar(200)")]
+		public string naziv
+		{
+			get
+			{
+				return this._naziv;
+			}
+			set
+			{
+				if ((this._naziv != value))
+				{
+					this.OnnazivChanging(value);
+					this.SendPropertyChanging();
+					this._naziv = value;
+					this.SendPropertyChanged("naziv");
+					this.OnnazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_serverID", DbType="Int")]
+		public System.Nullable<int> serverID
+		{
+			get
+			{
+				return this._serverID;
+			}
+			set
+			{
+				if ((this._serverID != value))
+				{
+					if (this._tblServer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnserverIDChanging(value);
+					this.SendPropertyChanging();
+					this._serverID = value;
+					this.SendPropertyChanged("serverID");
+					this.OnserverIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbID", DbType="Int")]
+		public System.Nullable<int> dbID
+		{
+			get
+			{
+				return this._dbID;
+			}
+			set
+			{
+				if ((this._dbID != value))
+				{
+					if (this._tblDB.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OndbIDChanging(value);
+					this.SendPropertyChanging();
+					this._dbID = value;
+					this.SendPropertyChanged("dbID");
+					this.OndbIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblUpit_tblCelija", Storage="_tblCelijas", ThisKey="id", OtherKey="upitID")]
+		public EntitySet<tblCelija> tblCelijas
+		{
+			get
+			{
+				return this._tblCelijas;
+			}
+			set
+			{
+				this._tblCelijas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblServer_tblUpit", Storage="_tblServer", ThisKey="serverID", OtherKey="id", IsForeignKey=true)]
+		public tblServer tblServer
+		{
+			get
+			{
+				return this._tblServer.Entity;
+			}
+			set
+			{
+				tblServer previousValue = this._tblServer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblServer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblServer.Entity = null;
+						previousValue.tblUpits.Remove(this);
+					}
+					this._tblServer.Entity = value;
+					if ((value != null))
+					{
+						value.tblUpits.Add(this);
+						this._serverID = value.id;
+					}
+					else
+					{
+						this._serverID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblServer");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblDB_tblUpit", Storage="_tblDB", ThisKey="dbID", OtherKey="id", IsForeignKey=true)]
+		public tblDB tblDB
+		{
+			get
+			{
+				return this._tblDB.Entity;
+			}
+			set
+			{
+				tblDB previousValue = this._tblDB.Entity;
+				if (((previousValue != value) 
+							|| (this._tblDB.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblDB.Entity = null;
+						previousValue.tblUpits.Remove(this);
+					}
+					this._tblDB.Entity = value;
+					if ((value != null))
+					{
+						value.tblUpits.Add(this);
+						this._dbID = value.id;
+					}
+					else
+					{
+						this._dbID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblDB");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblCelijas(tblCelija entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblUpit = this;
+		}
+		
+		private void detach_tblCelijas(tblCelija entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblUpit = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblServer")]
+	public partial class tblServer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _serverString;
+		
+		private string _naziv;
+		
+		private EntitySet<tblUpit> _tblUpits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnserverStringChanging(string value);
+    partial void OnserverStringChanged();
+    partial void OnnazivChanging(string value);
+    partial void OnnazivChanged();
+    #endregion
+		
+		public tblServer()
+		{
+			this._tblUpits = new EntitySet<tblUpit>(new Action<tblUpit>(this.attach_tblUpits), new Action<tblUpit>(this.detach_tblUpits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_serverString", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string serverString
+		{
+			get
+			{
+				return this._serverString;
+			}
+			set
+			{
+				if ((this._serverString != value))
+				{
+					this.OnserverStringChanging(value);
+					this.SendPropertyChanging();
+					this._serverString = value;
+					this.SendPropertyChanged("serverString");
+					this.OnserverStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string naziv
+		{
+			get
+			{
+				return this._naziv;
+			}
+			set
+			{
+				if ((this._naziv != value))
+				{
+					this.OnnazivChanging(value);
+					this.SendPropertyChanging();
+					this._naziv = value;
+					this.SendPropertyChanged("naziv");
+					this.OnnazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblServer_tblUpit", Storage="_tblUpits", ThisKey="id", OtherKey="serverID")]
+		public EntitySet<tblUpit> tblUpits
+		{
+			get
+			{
+				return this._tblUpits;
+			}
+			set
+			{
+				this._tblUpits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblUpits(tblUpit entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblServer = this;
+		}
+		
+		private void detach_tblUpits(tblUpit entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblServer = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblDB")]
+	public partial class tblDB : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _dbAttachString;
+		
+		private string _naziv;
+		
+		private string _korisnik;
+		
+		private string _lozinka;
+		
+		private string _salt;
+		
+		private System.Nullable<bool> _integratedAuth;
+		
+		private EntitySet<tblUpit> _tblUpits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndbAttachStringChanging(string value);
+    partial void OndbAttachStringChanged();
+    partial void OnnazivChanging(string value);
+    partial void OnnazivChanged();
+    partial void OnkorisnikChanging(string value);
+    partial void OnkorisnikChanged();
+    partial void OnlozinkaChanging(string value);
+    partial void OnlozinkaChanged();
+    partial void OnsaltChanging(string value);
+    partial void OnsaltChanged();
+    partial void OnintegratedAuthChanging(System.Nullable<bool> value);
+    partial void OnintegratedAuthChanged();
+    #endregion
+		
+		public tblDB()
+		{
+			this._tblUpits = new EntitySet<tblUpit>(new Action<tblUpit>(this.attach_tblUpits), new Action<tblUpit>(this.detach_tblUpits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbAttachString", DbType="VarChar(250)")]
+		public string dbAttachString
+		{
+			get
+			{
+				return this._dbAttachString;
+			}
+			set
+			{
+				if ((this._dbAttachString != value))
+				{
+					this.OndbAttachStringChanging(value);
+					this.SendPropertyChanging();
+					this._dbAttachString = value;
+					this.SendPropertyChanged("dbAttachString");
+					this.OndbAttachStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="NVarChar(250)")]
+		public string naziv
+		{
+			get
+			{
+				return this._naziv;
+			}
+			set
+			{
+				if ((this._naziv != value))
+				{
+					this.OnnazivChanging(value);
+					this.SendPropertyChanging();
+					this._naziv = value;
+					this.SendPropertyChanged("naziv");
+					this.OnnazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_korisnik", DbType="NVarChar(250)")]
+		public string korisnik
+		{
+			get
+			{
+				return this._korisnik;
+			}
+			set
+			{
+				if ((this._korisnik != value))
+				{
+					this.OnkorisnikChanging(value);
+					this.SendPropertyChanging();
+					this._korisnik = value;
+					this.SendPropertyChanged("korisnik");
+					this.OnkorisnikChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lozinka", DbType="NVarChar(250)")]
+		public string lozinka
+		{
+			get
+			{
+				return this._lozinka;
+			}
+			set
+			{
+				if ((this._lozinka != value))
+				{
+					this.OnlozinkaChanging(value);
+					this.SendPropertyChanging();
+					this._lozinka = value;
+					this.SendPropertyChanged("lozinka");
+					this.OnlozinkaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salt", DbType="NVarChar(250)")]
+		public string salt
+		{
+			get
+			{
+				return this._salt;
+			}
+			set
+			{
+				if ((this._salt != value))
+				{
+					this.OnsaltChanging(value);
+					this.SendPropertyChanging();
+					this._salt = value;
+					this.SendPropertyChanged("salt");
+					this.OnsaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_integratedAuth", DbType="Bit")]
+		public System.Nullable<bool> integratedAuth
+		{
+			get
+			{
+				return this._integratedAuth;
+			}
+			set
+			{
+				if ((this._integratedAuth != value))
+				{
+					this.OnintegratedAuthChanging(value);
+					this.SendPropertyChanging();
+					this._integratedAuth = value;
+					this.SendPropertyChanged("integratedAuth");
+					this.OnintegratedAuthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblDB_tblUpit", Storage="_tblUpits", ThisKey="id", OtherKey="dbID")]
+		public EntitySet<tblUpit> tblUpits
+		{
+			get
+			{
+				return this._tblUpits;
+			}
+			set
+			{
+				this._tblUpits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblUpits(tblUpit entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblDB = this;
+		}
+		
+		private void detach_tblUpits(tblUpit entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblDB = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewCelijaPodaci")]
+	public partial class viewCelijaPodaci
+	{
+		
+		private int _id;
+		
+		private System.Nullable<int> _grafID;
+		
+		private System.Nullable<int> _upitID;
+		
+		private string _upit;
+		
+		private string _upitNaziv;
+		
+		private string _grafNaziv;
+		
+		private string _serverString;
+		
+		private string _serverNaziv;
+		
+		private string _dbNaziv;
+		
+		private string _dbAttachString;
+		
+		private string _korisnik;
+		
+		private string _lozinka;
+		
+		private string _salt;
+		
+		private System.Nullable<bool> _integratedAuth;
+		
+		public viewCelijaPodaci()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_grafID", DbType="Int")]
+		public System.Nullable<int> grafID
+		{
+			get
+			{
+				return this._grafID;
+			}
+			set
+			{
+				if ((this._grafID != value))
+				{
+					this._grafID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_upitID", DbType="Int")]
+		public System.Nullable<int> upitID
+		{
+			get
+			{
+				return this._upitID;
+			}
+			set
+			{
+				if ((this._upitID != value))
+				{
+					this._upitID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_upit", DbType="VarChar(5000)")]
+		public string upit
+		{
+			get
+			{
+				return this._upit;
+			}
+			set
+			{
+				if ((this._upit != value))
+				{
+					this._upit = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_upitNaziv", DbType="VarChar(200)")]
+		public string upitNaziv
+		{
+			get
+			{
+				return this._upitNaziv;
+			}
+			set
+			{
+				if ((this._upitNaziv != value))
+				{
+					this._upitNaziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_grafNaziv", DbType="NChar(10)")]
+		public string grafNaziv
+		{
+			get
+			{
+				return this._grafNaziv;
+			}
+			set
+			{
+				if ((this._grafNaziv != value))
+				{
+					this._grafNaziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_serverString", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string serverString
+		{
+			get
+			{
+				return this._serverString;
+			}
+			set
+			{
+				if ((this._serverString != value))
+				{
+					this._serverString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_serverNaziv", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string serverNaziv
+		{
+			get
+			{
+				return this._serverNaziv;
+			}
+			set
+			{
+				if ((this._serverNaziv != value))
+				{
+					this._serverNaziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbNaziv", DbType="NVarChar(250)")]
+		public string dbNaziv
+		{
+			get
+			{
+				return this._dbNaziv;
+			}
+			set
+			{
+				if ((this._dbNaziv != value))
+				{
+					this._dbNaziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbAttachString", DbType="VarChar(250)")]
+		public string dbAttachString
+		{
+			get
+			{
+				return this._dbAttachString;
+			}
+			set
+			{
+				if ((this._dbAttachString != value))
+				{
+					this._dbAttachString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_korisnik", DbType="NVarChar(250)")]
+		public string korisnik
+		{
+			get
+			{
+				return this._korisnik;
+			}
+			set
+			{
+				if ((this._korisnik != value))
+				{
+					this._korisnik = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lozinka", DbType="NVarChar(250)")]
+		public string lozinka
+		{
+			get
+			{
+				return this._lozinka;
+			}
+			set
+			{
+				if ((this._lozinka != value))
+				{
+					this._lozinka = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_salt", DbType="NVarChar(250)")]
+		public string salt
+		{
+			get
+			{
+				return this._salt;
+			}
+			set
+			{
+				if ((this._salt != value))
+				{
+					this._salt = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_integratedAuth", DbType="Bit")]
+		public System.Nullable<bool> integratedAuth
+		{
+			get
+			{
+				return this._integratedAuth;
+			}
+			set
+			{
+				if ((this._integratedAuth != value))
+				{
+					this._integratedAuth = value;
+				}
+			}
 		}
 	}
 }

@@ -111,7 +111,7 @@ namespace TonzaDiplomski {
 
 
             //  db.Dispose();                       // ovo će garbage collector srediti
-            naslovSemaforaCelija.InnerHtml = semafori.Last().naziv + "Stranica " + trenutnaStranica;
+            naslovSemaforaCelija.InnerHtml = semafori.Last().naziv + " - Stranica " + trenutnaStranica;
 
         }
     }

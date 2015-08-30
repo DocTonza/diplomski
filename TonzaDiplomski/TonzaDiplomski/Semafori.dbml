@@ -7,21 +7,6 @@
       <Association Name="tblSemafor_tblStranica" Member="tblStranicas" ThisKey="Id" OtherKey="semaforID" Type="tblStranica" />
     </Type>
   </Table>
-  <Table Name="dbo.tblUpit" Member="tblUpits">
-    <Type Name="tblUpit">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="upit" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
-      <Column Name="naziv" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Association Name="tblUpit_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="upitID" Type="tblCelija" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblVrstaGrafa" Member="tblVrstaGrafas">
-    <Type Name="tblVrstaGrafa">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Naziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="tblVrstaGrafa_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="grafID" Type="tblCelija" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblRedak" Member="tblRedaks">
     <Type Name="tblRedak">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -36,9 +21,9 @@
       <Column Name="redakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="grafID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="upitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblUpit_tblCelija" Member="tblUpit" ThisKey="upitID" OtherKey="id" Type="tblUpit" IsForeignKey="true" />
-      <Association Name="tblVrstaGrafa_tblCelija" Member="tblVrstaGrafa" ThisKey="grafID" OtherKey="id" Type="tblVrstaGrafa" IsForeignKey="true" />
       <Association Name="tblRedak_tblCelija" Member="tblRedak" ThisKey="redakID" OtherKey="id" Type="tblRedak" IsForeignKey="true" />
+      <Association Name="tblVrstaGrafa_tblCelija" Member="tblVrstaGrafa" ThisKey="grafID" OtherKey="id" Type="tblVrstaGrafa" IsForeignKey="true" />
+      <Association Name="tblUpit_tblCelija" Member="tblUpit" ThisKey="upitID" OtherKey="id" Type="tblUpit" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblStranica" Member="tblStranicas">
@@ -50,6 +35,63 @@
       <Column Name="brojRedova" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="tblStranica_tblRedak" Member="tblRedaks" ThisKey="Id" OtherKey="stranicaID" Type="tblRedak" />
       <Association Name="tblSemafor_tblStranica" Member="tblSemafor" ThisKey="semaforID" OtherKey="Id" Type="tblSemafor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVrstaGrafa" Member="tblVrstaGrafas">
+    <Type Name="tblVrstaGrafa">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Naziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="tblVrstaGrafa_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="grafID" Type="tblCelija" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUpit" Member="tblUpits">
+    <Type Name="tblUpit">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="upit" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="serverID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dbID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblUpit_tblCelija" Member="tblCelijas" ThisKey="id" OtherKey="upitID" Type="tblCelija" />
+      <Association Name="tblServer_tblUpit" Member="tblServer" ThisKey="serverID" OtherKey="id" Type="tblServer" IsForeignKey="true" />
+      <Association Name="tblDB_tblUpit" Member="tblDB" ThisKey="dbID" OtherKey="id" Type="tblDB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblServer" Member="tblServers">
+    <Type Name="tblServer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="serverString" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="tblServer_tblUpit" Member="tblUpits" ThisKey="id" OtherKey="serverID" Type="tblUpit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDB" Member="tblDBs">
+    <Type Name="tblDB">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dbAttachString" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="naziv" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="korisnik" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="lozinka" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="salt" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="integratedAuth" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblDB_tblUpit" Member="tblUpits" ThisKey="id" OtherKey="dbID" Type="tblUpit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.viewCelijaPodaci" Member="viewCelijaPodacis">
+    <Type Name="viewCelijaPodaci">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="grafID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="upitID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="upit" Type="System.String" DbType="VarChar(5000)" CanBeNull="true" />
+      <Column Name="upitNaziv" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="grafNaziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="serverString" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="serverNaziv" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="dbNaziv" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="dbAttachString" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="korisnik" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="lozinka" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="salt" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="integratedAuth" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

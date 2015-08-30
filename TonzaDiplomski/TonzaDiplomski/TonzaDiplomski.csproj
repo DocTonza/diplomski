@@ -196,6 +196,8 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="App_Data\BMS_Data.MDF" />
+    <Content Include="App_Data\BMS_Log.LDF" />
     <Content Include="App_Data\Semafori.mdf" />
     <Content Include="App_Data\Semafori_log.ldf">
       <DependentUpon>Semafori.mdf</DependentUpon>
