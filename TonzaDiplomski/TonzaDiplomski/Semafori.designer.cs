@@ -57,7 +57,7 @@ namespace TonzaDiplomski
     #endregion
 		
 		public SemaforiDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SemaforiConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SemaforiDBContext"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

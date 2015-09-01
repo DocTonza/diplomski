@@ -40,7 +40,12 @@ namespace TonzaDiplomski {
 
             //connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Integrated Security = False; User ID=tonza;Password=tonza";
             connstring = "Server = "+celijaPodaci.Last().serverString+";";
-            connstring += "AttachDbFileName= " + celijaPodaci.Last().dbAttachString + ";";
+
+            // ovaj dio dopisujemo samo ako postoji u bazi, a koristi se samo kad se radi o localDB-u, kada treba attachati bazu. Kad se spajamo na "Veliki" SQL to nam ne treba, pa kod unosa upozori korisnika na to
+            if (celijaPodaci.Last().dbAttachString.Length>0)
+                connstring += "AttachDbFileName= " + celijaPodaci.Last().dbAttachString + ";";
+
+
             connstring += "Database = " + celijaPodaci.Last().dbNaziv + ";";
             connstring += "Integrated Security = " + (celijaPodaci.Last().integratedAuth==true ? "True" : "False")+";";
             connstring += "User ID=" + celijaPodaci.Last().korisnik + ";";

@@ -27,7 +27,7 @@ namespace TonzaDiplomski
                 Response.Redirect("OdaberiSemafor.aspx");
             }
             
-            
+            /*
             List<PodatakZaGraf> podaci1 = new List<PodatakZaGraf>();
             List<PodatakZaGraf> podaci2 = new List<PodatakZaGraf>();
             List<PodatakZaGraf> podaci3 = new List<PodatakZaGraf>();
@@ -119,7 +119,7 @@ namespace TonzaDiplomski
             podaci6.Add(new PodatakZaGraf("Davor", 29));
             podaci6.Add(new PodatakZaGraf("Nikola", 56));
             podaci6.Add(new PodatakZaGraf("Martin", 48));
-
+            */
 
             // tu stvaramo prvi red
 
@@ -143,6 +143,7 @@ namespace TonzaDiplomski
             
 
             
+            /*
             //generirajRedak(rbRetka,brojStupaca);
            
             System.Web.UI.HtmlControls.HtmlGenericControl PrviOdTri = new
@@ -192,71 +193,24 @@ namespace TonzaDiplomski
             StupciGraf stupci3od3 = new StupciGraf("ovo je naslov trećih stupaca", podaci6,2);
             //DrugiRedTreci.InnerHtml = stupci3od3.ToString();
 
-            testSpajanjaNaBazu();
+         */  
         }
-        public void generirajRedak(int rBr, int BrojStupaca) {
+       /* public void generirajRedak(int rBr, int BrojStupaca) {
             for (int i = 1; i <= BrojStupaca; ++i) { 
                 celijaSGrafom.Add(new System.Web.UI.HtmlControls.HtmlGenericControl());
                 celijaSGrafom.Last().ID = "";
                 celijaSGrafom.Last().Attributes["class"]= "col-lg-4 col-md-6";
             }
 
-
-        }
+    
+        }*/
 
         protected void timerZaStranice_Tick(object sender, EventArgs e) {
-            // System.Web.UI.HtmlControls.HtmlGenericControl jura = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-            // jura.InnerHtml = "ovo je Jura </br>" + DateTime.Now;
-            // divZaStranice.Controls.Add(jura);
-
-            //semafor01.dohvatiNaslovSemafora();
+           
             timerZaStranice.Interval = (int)Session["periodOsvjezavanjaStranice"];
-            // semafor01.Controls.Clear();
-            // semafor01.Controls.Add(jura);
-
+           
         }
 
-        public void testSpajanjaNaBazu() {
-
-            /*
-            ideja je da pokupimo podatke iz viewa na SQL-u
-            connstring i sve ostalo dovlačimo iz baze postavki
-            view treba saržavati dvije kolone, nazivPodatka i vrijednostPodatka. Ne moraju se tako zvati, ali redoslijed bi bio dobar
-            trčimo kroz tablicu i generiramo podatke za graf.
-            onda tu listu podataka prosljeđujemo grafu !!!
-            Dodajemo graf u ćeliju i to je to
-            */
-
-
-
-            string connString;  // = "Server=SQL2k14.blink.hr;Database=BMS;Trusted_Connection=true;";
-            //= "Data Source=pero\3389;Integrated Security=False;User ID=tonza;Password=password"
-            connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Database=BMS_Data; Integrated Security = False; User ID=tonza;Password=tonza";
-                         
-
-            //connString = "Server = (LocalDB)\\MSSQLLocalDB; Database=BMS_Data; Integrated Security = False; User ID=tonza;Password=tonza";
-
-
-            SqlConnection myConn = new SqlConnection(connString);
-            SqlCommand cmd = new SqlCommand("select * from tblKorisnik", myConn);
-
-            myConn.Open();
-
-            string bla;
-            using (SqlDataReader oReader = cmd.ExecuteReader()) {
-                while (oReader.Read()) {
-                    //bla = oReader["Ime"].ToString();
-
-                    
-
-                    bla = oReader.GetValue(2).ToString();
-                    //matchingPerson.lastName = oReader["LastName"].ToString();
-                }
-
-                myConn.Close();
-            }
-
-            int i = 1;
-        }
+       
     }
 }

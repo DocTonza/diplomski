@@ -86,14 +86,22 @@ namespace TonzaDiplomski {
 
             string stranica_HTML_ID = ID + "_stranica_" + trenutnaStranica;                // gereriramo HTML ID
             //stranice.ElementAt(trenutnaStranica-1).Id
-            stranicaSemafora stranica = new stranicaSemafora(stranica_HTML_ID, semafor_DB_ID, stranice.ElementAt(trenutnaStranica - 1).Id, stranice.ElementAt(trenutnaStranica - 1).refreshPeriod);
-            
-            Controls.Clear();
-            dodajNaslovSemafora();
-            Controls.Add(stranica);
 
-            ++trenutnaStranica;
+            
+            if (brojStranica > 0) {
+                stranicaSemafora stranica = new stranicaSemafora(stranica_HTML_ID, semafor_DB_ID, stranice.ElementAt(trenutnaStranica - 1).Id, stranice.ElementAt(trenutnaStranica - 1).refreshPeriod);
+
+                Controls.Clear();
+                dodajNaslovSemafora();
+                Controls.Add(stranica);
+
+                ++trenutnaStranica;
                 HttpContext.Current.Session["trenutnaStranica"] = trenutnaStranica;
+
+            }
+            else {
+                HttpContext.Current.Session["trenutnaStranica"] = 1;
+            }
             
 
             //trenutnaStranica++;
