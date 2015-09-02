@@ -21,26 +21,40 @@
 
         .box {
             width:70%;
-            height:200px;
+            height:20px;
             background:#FFF;
-            margin:40px auto;
+            margin:0px auto;
             padding:10px;
 
         }
 
+        .boxIndent {
+            position:relative;
+            left:20px;
+            /*right:0px;*/
+            width:75%;
+            height:20px;
+            background:#FFF;
+            margin:0px auto;
+            padding:10px;
+
+        }
         .sjena {
             
                  box-shadow: 0 10px 6px -6px #dddddd;
                  
         }
+        .glavniContainer {
+            background:#4cff00;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div id="glavniContainer" runat="server" class="glavniContainer"> 
 
             <div id="test" runat="server" class="box sjena">
-                tu sad kao nešto piše
+                <asp:LinkButton runat="server" OnClick="Unnamed_Click"> sad kao nešto piše</asp:LinkButton>
             </div>
 
         </div>

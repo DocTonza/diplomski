@@ -10,5 +10,18 @@ namespace TonzaDiplomski {
         protected void Page_Load(object sender, EventArgs e) {
 
         }
+
+      
+
+        protected void Unnamed_Click(object sender, EventArgs e) {
+            System.Web.UI.HtmlControls.HtmlGenericControl stranicaPanel = new System.Web.UI.HtmlControls.HtmlGenericControl("DIV");
+            stranicaPanel.ID = "stranicaPanel";
+            stranicaPanel.Attributes["class"] = "boxIndent sjena";
+            stranicaPanel.InnerHtml = "ovo je dodano iz koda";
+            glavniContainer.Controls.AddAt(0,stranicaPanel);
+            
+            
+
+        }
     }
 }
