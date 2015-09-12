@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.3.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.15.1.3.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights, Version=1.0.0.4220, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
@@ -215,7 +219,11 @@
     <Content Include="Account\Web.config" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="Content\Grafovi.css" />
+    <Content Include="SemaforEdit.aspx" />
+    <Content Include="SemaforEdit_problemi.aspx" />
     <Content Include="_test.aspx" />
+    <Content Include="__rucniTestEditSucelja.aspx" />
+    <Content Include="___TestDynamic.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="OdaberiSemafor.aspx" />
     <Content Include="PanelTest.aspx" />
@@ -439,6 +447,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="redakStraniceSemafora.cs" />
     <Compile Include="Semafor.cs" />
+    <Compile Include="SemaforEdit.aspx.cs">
+      <DependentUpon>SemaforEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SemaforEdit.aspx.designer.cs">
+      <DependentUpon>SemaforEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SemaforEdit_problemi.aspx.cs">
+      <DependentUpon>SemaforEdit_problemi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SemaforEdit_problemi.aspx.designer.cs">
+      <DependentUpon>SemaforEdit_problemi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Semafori.cs">
       <DependentUpon>Semafori.dbml</DependentUpon>
     </Compile>
@@ -479,6 +501,20 @@
     </Compile>
     <Compile Include="_test.aspx.designer.cs">
       <DependentUpon>_test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="__rucniTestEditSucelja.aspx.cs">
+      <DependentUpon>__rucniTestEditSucelja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="__rucniTestEditSucelja.aspx.designer.cs">
+      <DependentUpon>__rucniTestEditSucelja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="___TestDynamic.aspx.cs">
+      <DependentUpon>___TestDynamic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="___TestDynamic.aspx.designer.cs">
+      <DependentUpon>___TestDynamic.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -58,6 +58,8 @@
             </div>
 
         </div>
+        <ajaxToolkit:AreaChart ID="AreaChart1" runat="server">
+        </ajaxToolkit:AreaChart>
     </form>
 </body>
 </html>

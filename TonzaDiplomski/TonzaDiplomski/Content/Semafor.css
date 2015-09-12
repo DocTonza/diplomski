@@ -5,3 +5,127 @@
     text-align:center;
     text-anchor:middle;
 }
+
+.AccordianSemaforNaslov {
+    background-color:white;
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+    font-variant:small-caps;
+    padding-left:10px;
+    margin-bottom:4px;
+    
+}
+
+
+
+.AccordianStranicaNaslov {
+    background-color:#EEEEEE;
+    font-size:14px;
+    font-weight:bold;
+    color:darkslategrey;
+    margin-left:10px;
+    padding-left:10px;
+    margin-bottom:1px;
+}
+.AccordianRedNaslov {
+    background-color:#CCCCCC;
+    color:darkslategrey;
+    font-size:14px;
+    margin-left:20px;
+    margin-bottom:1px;
+    padding-left:10px;
+}
+
+.AccordianAddEdditControls {
+    color:#4800ff;
+    font-size:10px;
+    margin-left:10px;
+    
+
+}
+
+.pnl1Class {
+    position:relative;
+    left:0px;
+    top:0px;
+    width:100%;
+    background-color:lightgrey;
+    
+}
+.AccordionContentPaneContent {
+    position:relative;
+    left:0px;
+    top:0px;
+    width:500px;
+    text-align:left;
+    font-size:12px;
+    margin:2px;
+}
+.AccordionContentPaneNavigacija {
+    position:relative;
+    right:0px;
+    top:0px;
+    
+    text-align:right;
+    font-size:12px;
+    margin:2px;
+}
+
+.modalBackground {
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100%;
+    background-color:dimgrey;
+    opacity:0.6;
+    filter:alpha(opacity=50);
+    z-index:900;
+
+
+}
+
+.lebdeciEditor {
+    position:relative;
+    z-index:1000;
+    width:60%;
+    height:400px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:white;
+    color:black;
+    opacity:1;
+}
+
+.ugasiLebdeciEditor {
+    position:absolute;
+    right:0px;
+    top:0px;
+    width:14px;
+    height:14px;
+    font-size:8px;
+    border:1px solid black;
+    margin:2px;
+    text-align:center;
+    vertical-align:middle;    
+   
+}
+
+.labelaEdit {
+    position:absolute;
+    left:20px;
+
+
+}
+
+.textBoxEdit {
+    position:absolute;
+    left:190px;
+}
+.sjena {
+    box-shadow: 4px 4px 6px -6px #111111;
+}
+.sjenaSvijetla {
+    box-shadow: 6px 6px 5px -5px #999999;
+}

@@ -27,33 +27,13 @@
         <classShapeMoniker Id="a845f62d-32ad-4b16-bac4-ec128bb9b55b" />
       </nodes>
     </associationConnector>
-    <classShape Id="50a5f76c-f9ee-4b82-9ff1-dd38ad2ed412" absoluteBounds="1, 2, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/SemaforiDataContext/tblStranica" />
-      <nestedChildShapes>
-        <elementListCompartment Id="50c5796d-5836-4a10-b4d4-2b02d2cc2efe" absoluteBounds="1.0150000000000001, 2.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(1.875 : 3.77089680989583); (1.875 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SemaforiDataContext/tblStranica/tblStranica_tblRedak" />
-      <nodes>
-        <classShapeMoniker Id="50a5f76c-f9ee-4b82-9ff1-dd38ad2ed412" />
-        <classShapeMoniker Id="0b1531cf-38b0-4074-aff3-bc347c4cc634" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.8125 : 1.69399251302083); (1.8125 : 2)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SemaforiDataContext/tblSemafor/tblSemafor_tblStranica" />
-      <nodes>
-        <classShapeMoniker Id="93c334a8-2ed3-41f9-8051-880cb61132ef" />
-        <classShapeMoniker Id="50a5f76c-f9ee-4b82-9ff1-dd38ad2ed412" />
-      </nodes>
-    </associationConnector>
     <classShape Id="cb50b4aa-a302-479b-b812-06066b231f5a" absoluteBounds="3.75, 0.5, 2, 1.1939925130208333">
       <DataClassMoniker Name="/SemaforiDataContext/tblVrstaGrafa" />
       <nestedChildShapes>
         <elementListCompartment Id="a06e04e1-d936-4fc6-9c75-0d23b2423b3e" absoluteBounds="3.7649999999999997, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.53125 : 1.69399251302083); (4.53125 : 6.28929768880208); (2.75 : 6.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.53125 : 1.69399251302083); (4.53125 : 6.28929768880208); (2.75 : 6.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SemaforiDataContext/tblVrstaGrafa/tblVrstaGrafa_tblCelija" />
       <nodes>
         <classShapeMoniker Id="cb50b4aa-a302-479b-b812-06066b231f5a" />
@@ -66,7 +46,7 @@
         <elementListCompartment Id="1e23e3ff-6ea4-46dc-80c8-7e5b0fffc27f" absoluteBounds="5.39, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.375 : 4.14589680989583); (6.375 : 5.86339634440104); (4.61458333333333 : 5.86339634440104 : JumpStart); (4.44791666666667 : 5.86339634440104 : JumpEnd); (2.75 : 5.86339634440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.375 : 4.14589680989583); (6.375 : 5.86339634440104); (2.75 : 5.86339634440104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SemaforiDataContext/tblUpit/tblUpit_tblCelija" />
       <nodes>
         <classShapeMoniker Id="738ac450-84b5-4e32-9a27-fc124ee66344" />
@@ -79,7 +59,7 @@
         <elementListCompartment Id="510258d6-e613-4998-8311-e5775a3fe2e0" absoluteBounds="8.265, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.25 : 1.82139322916667); (6.59375 : 1.82139322916667); (6.59375 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 1.82139322916667); (6.59375 : 1.82139322916667); (6.59375 : 2.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SemaforiDataContext/tblServer/tblServer_tblUpit" />
       <nodes>
         <classShapeMoniker Id="3296e875-6034-4ef1-96f7-3f488f6ec33c" />
@@ -92,7 +72,7 @@
         <elementListCompartment Id="167c31a6-1c74-4329-8982-f37780a921ad" absoluteBounds="8.765, 3.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.75 : 3.82294840494792); (7.375 : 3.82294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.75 : 3.82294840494792); (7.375 : 3.82294840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SemaforiDataContext/tblDB/tblDB_tblUpit" />
       <nodes>
         <classShapeMoniker Id="68ebf38f-242d-4a36-b3f1-4fb5173e2d47" />
@@ -105,5 +85,25 @@
         <elementListCompartment Id="c60ce845-ab93-45b7-9af1-6e096f2298f8" absoluteBounds="8.39, 6.46, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="5d74be2a-7b5c-4636-9138-309a7c4484a2" absoluteBounds="1, 1.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/SemaforiDataContext/tblStranica" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05ede40b-c683-454f-a420-08e4e20ad94f" absoluteBounds="1.0150000000000001, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.875 : 3.64589680989583); (1.875 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SemaforiDataContext/tblStranica/tblStranica_tblRedak" />
+      <nodes>
+        <classShapeMoniker Id="5d74be2a-7b5c-4636-9138-309a7c4484a2" />
+        <classShapeMoniker Id="0b1531cf-38b0-4074-aff3-bc347c4cc634" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.8125 : 1.69399251302083); (1.8125 : 1.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SemaforiDataContext/tblSemafor/tblSemafor_tblStranica" />
+      <nodes>
+        <classShapeMoniker Id="93c334a8-2ed3-41f9-8051-880cb61132ef" />
+        <classShapeMoniker Id="5d74be2a-7b5c-4636-9138-309a7c4484a2" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

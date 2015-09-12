@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Semafori" Class="SemaforiDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Semafori.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SemaforiConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\ProjectsV12;AttachDbFilename=|DataDirectory|\Semafori.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SemaforiDBContext" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblSemafor" Member="tblSemafors">
     <Type Name="tblSemafor">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -24,17 +24,6 @@
       <Association Name="tblRedak_tblCelija" Member="tblRedak" ThisKey="redakID" OtherKey="id" Type="tblRedak" IsForeignKey="true" />
       <Association Name="tblVrstaGrafa_tblCelija" Member="tblVrstaGrafa" ThisKey="grafID" OtherKey="id" Type="tblVrstaGrafa" IsForeignKey="true" />
       <Association Name="tblUpit_tblCelija" Member="tblUpit" ThisKey="upitID" OtherKey="id" Type="tblUpit" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblStranica" Member="tblStranicas">
-    <Type Name="tblStranica">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="naziv" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="refreshPeriod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="semaforID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="brojRedova" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="tblStranica_tblRedak" Member="tblRedaks" ThisKey="Id" OtherKey="stranicaID" Type="tblRedak" />
-      <Association Name="tblSemafor_tblStranica" Member="tblSemafor" ThisKey="semaforID" OtherKey="Id" Type="tblSemafor" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblVrstaGrafa" Member="tblVrstaGrafas">
@@ -92,6 +81,17 @@
       <Column Name="lozinka" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="salt" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="integratedAuth" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStranica" Member="tblStranicas">
+    <Type Name="tblStranica">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="refreshPeriod" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="semaforID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="brojRedova" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tblStranica_tblRedak" Member="tblRedaks" ThisKey="Id" OtherKey="stranicaID" Type="tblRedak" />
+      <Association Name="tblSemafor_tblStranica" Member="tblSemafor" ThisKey="semaforID" OtherKey="Id" Type="tblSemafor" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

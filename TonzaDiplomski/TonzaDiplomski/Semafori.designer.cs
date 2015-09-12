@@ -39,9 +39,6 @@ namespace TonzaDiplomski
     partial void InserttblCelija(tblCelija instance);
     partial void UpdatetblCelija(tblCelija instance);
     partial void DeletetblCelija(tblCelija instance);
-    partial void InserttblStranica(tblStranica instance);
-    partial void UpdatetblStranica(tblStranica instance);
-    partial void DeletetblStranica(tblStranica instance);
     partial void InserttblVrstaGrafa(tblVrstaGrafa instance);
     partial void UpdatetblVrstaGrafa(tblVrstaGrafa instance);
     partial void DeletetblVrstaGrafa(tblVrstaGrafa instance);
@@ -54,6 +51,9 @@ namespace TonzaDiplomski
     partial void InserttblDB(tblDB instance);
     partial void UpdatetblDB(tblDB instance);
     partial void DeletetblDB(tblDB instance);
+    partial void InserttblStranica(tblStranica instance);
+    partial void UpdatetblStranica(tblStranica instance);
+    partial void DeletetblStranica(tblStranica instance);
     #endregion
 		
 		public SemaforiDataContext() : 
@@ -110,14 +110,6 @@ namespace TonzaDiplomski
 			}
 		}
 		
-		public System.Data.Linq.Table<tblStranica> tblStranicas
-		{
-			get
-			{
-				return this.GetTable<tblStranica>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblVrstaGrafa> tblVrstaGrafas
 		{
 			get
@@ -155,6 +147,14 @@ namespace TonzaDiplomski
 			get
 			{
 				return this.GetTable<viewCelijaPodaci>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblStranica> tblStranicas
+		{
+			get
+			{
+				return this.GetTable<tblStranica>();
 			}
 		}
 	}
@@ -682,233 +682,6 @@ namespace TonzaDiplomski
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblStranica")]
-	public partial class tblStranica : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _naziv;
-		
-		private int _refreshPeriod;
-		
-		private int _semaforID;
-		
-		private int _brojRedova;
-		
-		private EntitySet<tblRedak> _tblRedaks;
-		
-		private EntityRef<tblSemafor> _tblSemafor;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnnazivChanging(string value);
-    partial void OnnazivChanged();
-    partial void OnrefreshPeriodChanging(int value);
-    partial void OnrefreshPeriodChanged();
-    partial void OnsemaforIDChanging(int value);
-    partial void OnsemaforIDChanged();
-    partial void OnbrojRedovaChanging(int value);
-    partial void OnbrojRedovaChanged();
-    #endregion
-		
-		public tblStranica()
-		{
-			this._tblRedaks = new EntitySet<tblRedak>(new Action<tblRedak>(this.attach_tblRedaks), new Action<tblRedak>(this.detach_tblRedaks));
-			this._tblSemafor = default(EntityRef<tblSemafor>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="NChar(10)")]
-		public string naziv
-		{
-			get
-			{
-				return this._naziv;
-			}
-			set
-			{
-				if ((this._naziv != value))
-				{
-					this.OnnazivChanging(value);
-					this.SendPropertyChanging();
-					this._naziv = value;
-					this.SendPropertyChanged("naziv");
-					this.OnnazivChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_refreshPeriod", DbType="Int NOT NULL")]
-		public int refreshPeriod
-		{
-			get
-			{
-				return this._refreshPeriod;
-			}
-			set
-			{
-				if ((this._refreshPeriod != value))
-				{
-					this.OnrefreshPeriodChanging(value);
-					this.SendPropertyChanging();
-					this._refreshPeriod = value;
-					this.SendPropertyChanged("refreshPeriod");
-					this.OnrefreshPeriodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_semaforID", DbType="Int NOT NULL")]
-		public int semaforID
-		{
-			get
-			{
-				return this._semaforID;
-			}
-			set
-			{
-				if ((this._semaforID != value))
-				{
-					if (this._tblSemafor.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnsemaforIDChanging(value);
-					this.SendPropertyChanging();
-					this._semaforID = value;
-					this.SendPropertyChanged("semaforID");
-					this.OnsemaforIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_brojRedova", DbType="Int NOT NULL")]
-		public int brojRedova
-		{
-			get
-			{
-				return this._brojRedova;
-			}
-			set
-			{
-				if ((this._brojRedova != value))
-				{
-					this.OnbrojRedovaChanging(value);
-					this.SendPropertyChanging();
-					this._brojRedova = value;
-					this.SendPropertyChanged("brojRedova");
-					this.OnbrojRedovaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStranica_tblRedak", Storage="_tblRedaks", ThisKey="Id", OtherKey="stranicaID")]
-		public EntitySet<tblRedak> tblRedaks
-		{
-			get
-			{
-				return this._tblRedaks;
-			}
-			set
-			{
-				this._tblRedaks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSemafor_tblStranica", Storage="_tblSemafor", ThisKey="semaforID", OtherKey="Id", IsForeignKey=true)]
-		public tblSemafor tblSemafor
-		{
-			get
-			{
-				return this._tblSemafor.Entity;
-			}
-			set
-			{
-				tblSemafor previousValue = this._tblSemafor.Entity;
-				if (((previousValue != value) 
-							|| (this._tblSemafor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblSemafor.Entity = null;
-						previousValue.tblStranicas.Remove(this);
-					}
-					this._tblSemafor.Entity = value;
-					if ((value != null))
-					{
-						value.tblStranicas.Add(this);
-						this._semaforID = value.Id;
-					}
-					else
-					{
-						this._semaforID = default(int);
-					}
-					this.SendPropertyChanged("tblSemafor");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblRedaks(tblRedak entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblStranica = this;
-		}
-		
-		private void detach_tblRedaks(tblRedak entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblStranica = null;
 		}
 	}
 	
@@ -1924,6 +1697,233 @@ namespace TonzaDiplomski
 					this._integratedAuth = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblStranica")]
+	public partial class tblStranica : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _naziv;
+		
+		private int _refreshPeriod;
+		
+		private int _semaforID;
+		
+		private int _brojRedova;
+		
+		private EntitySet<tblRedak> _tblRedaks;
+		
+		private EntityRef<tblSemafor> _tblSemafor;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnnazivChanging(string value);
+    partial void OnnazivChanged();
+    partial void OnrefreshPeriodChanging(int value);
+    partial void OnrefreshPeriodChanged();
+    partial void OnsemaforIDChanging(int value);
+    partial void OnsemaforIDChanged();
+    partial void OnbrojRedovaChanging(int value);
+    partial void OnbrojRedovaChanged();
+    #endregion
+		
+		public tblStranica()
+		{
+			this._tblRedaks = new EntitySet<tblRedak>(new Action<tblRedak>(this.attach_tblRedaks), new Action<tblRedak>(this.detach_tblRedaks));
+			this._tblSemafor = default(EntityRef<tblSemafor>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="VarChar(250)")]
+		public string naziv
+		{
+			get
+			{
+				return this._naziv;
+			}
+			set
+			{
+				if ((this._naziv != value))
+				{
+					this.OnnazivChanging(value);
+					this.SendPropertyChanging();
+					this._naziv = value;
+					this.SendPropertyChanged("naziv");
+					this.OnnazivChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_refreshPeriod", DbType="Int NOT NULL")]
+		public int refreshPeriod
+		{
+			get
+			{
+				return this._refreshPeriod;
+			}
+			set
+			{
+				if ((this._refreshPeriod != value))
+				{
+					this.OnrefreshPeriodChanging(value);
+					this.SendPropertyChanging();
+					this._refreshPeriod = value;
+					this.SendPropertyChanged("refreshPeriod");
+					this.OnrefreshPeriodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_semaforID", DbType="Int NOT NULL")]
+		public int semaforID
+		{
+			get
+			{
+				return this._semaforID;
+			}
+			set
+			{
+				if ((this._semaforID != value))
+				{
+					if (this._tblSemafor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnsemaforIDChanging(value);
+					this.SendPropertyChanging();
+					this._semaforID = value;
+					this.SendPropertyChanged("semaforID");
+					this.OnsemaforIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_brojRedova", DbType="Int NOT NULL")]
+		public int brojRedova
+		{
+			get
+			{
+				return this._brojRedova;
+			}
+			set
+			{
+				if ((this._brojRedova != value))
+				{
+					this.OnbrojRedovaChanging(value);
+					this.SendPropertyChanging();
+					this._brojRedova = value;
+					this.SendPropertyChanged("brojRedova");
+					this.OnbrojRedovaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblStranica_tblRedak", Storage="_tblRedaks", ThisKey="Id", OtherKey="stranicaID")]
+		public EntitySet<tblRedak> tblRedaks
+		{
+			get
+			{
+				return this._tblRedaks;
+			}
+			set
+			{
+				this._tblRedaks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblSemafor_tblStranica", Storage="_tblSemafor", ThisKey="semaforID", OtherKey="Id", IsForeignKey=true)]
+		public tblSemafor tblSemafor
+		{
+			get
+			{
+				return this._tblSemafor.Entity;
+			}
+			set
+			{
+				tblSemafor previousValue = this._tblSemafor.Entity;
+				if (((previousValue != value) 
+							|| (this._tblSemafor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblSemafor.Entity = null;
+						previousValue.tblStranicas.Remove(this);
+					}
+					this._tblSemafor.Entity = value;
+					if ((value != null))
+					{
+						value.tblStranicas.Add(this);
+						this._semaforID = value.Id;
+					}
+					else
+					{
+						this._semaforID = default(int);
+					}
+					this.SendPropertyChanged("tblSemafor");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblRedaks(tblRedak entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblStranica = this;
+		}
+		
+		private void detach_tblRedaks(tblRedak entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblStranica = null;
 		}
 	}
 }
