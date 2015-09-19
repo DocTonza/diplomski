@@ -31,6 +31,15 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.LinqDataSource straniceSrc;
         
         /// <summary>
+        /// redoviSrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource redoviSrc;
+        
+        /// <summary>
         /// upitiSrc control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,24 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource upitiSrc;
+        
+        /// <summary>
+        /// serveriSrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource serveriSrc;
+        
+        /// <summary>
+        /// bazeSrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource bazeSrc;
         
         /// <summary>
         /// menuUpdatePanel control.
@@ -58,6 +85,15 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lijeviContent;
         
         /// <summary>
+        /// linkButtonDodajSemafor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkButtonDodajSemafor;
+        
+        /// <summary>
         /// ListViewSemafori control.
         /// </summary>
         /// <remarks>
@@ -74,6 +110,33 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListViewUpiti;
+        
+        /// <summary>
+        /// linkButtonDodajServer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkButtonDodajServer;
+        
+        /// <summary>
+        /// ListViewServeri control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewServeri;
+        
+        /// <summary>
+        /// ListViewBaze control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewBaze;
         
         /// <summary>
         /// contentUpdatePanel control.
@@ -103,13 +166,22 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editSemafor;
         
         /// <summary>
-        /// SemaforID control.
+        /// labelSemaforID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SemaforID;
+        protected global::System.Web.UI.WebControls.Label labelSemaforID;
+        
+        /// <summary>
+        /// LinkButtonBrisiSemafor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiSemafor;
         
         /// <summary>
         /// textBoxSemaforNaziv control.
@@ -119,6 +191,24 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxSemaforNaziv;
+        
+        /// <summary>
+        /// LinkButtonDodajStranicu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonDodajStranicu;
+        
+        /// <summary>
+        /// LinkButtonBrisiStranicu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiStranicu;
         
         /// <summary>
         /// ListViewStranice control.
@@ -157,12 +247,192 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.TextBox TextBoxStranicaVrijemePrikazivanja;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// DropDownListStranicaBrojRedova control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListStranicaBrojRedova;
+        
+        /// <summary>
+        /// ListViewRedovi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewRedovi;
+        
+        /// <summary>
+        /// editUpit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editUpit;
+        
+        /// <summary>
+        /// editServer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editServer;
+        
+        /// <summary>
+        /// labelServerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelServerID;
+        
+        /// <summary>
+        /// textBoxServerNaziv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerNaziv;
+        
+        /// <summary>
+        /// textBoxServerServerString control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerServerString;
+        
+        /// <summary>
+        /// textBoxServerDatabaseName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseName;
+        
+        /// <summary>
+        /// checkBoxServerDatabaseIntegratedAuth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkBoxServerDatabaseIntegratedAuth;
+        
+        /// <summary>
+        /// textBoxServerDatabaseKorisnik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseKorisnik;
+        
+        /// <summary>
+        /// textBoxServerDatabaseLozinka control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseLozinka;
+        
+        /// <summary>
+        /// textBoxServerDatabaseAttachString control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseAttachString;
+        
+        /// <summary>
+        /// buttonProvjeriServerDatabaseString control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonProvjeriServerDatabaseString;
+        
+        /// <summary>
+        /// buttonServerSnimiPostavke control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonServerSnimiPostavke;
+        
+        /// <summary>
+        /// labelServerProvjeraStringa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelServerProvjeraStringa;
+        
+        /// <summary>
+        /// editBaza control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editBaza;
+        
+        /// <summary>
+        /// labelBazaID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelBazaID;
+        
+        /// <summary>
+        /// textBoxBazaNaziv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxBazaNaziv;
+        
+        /// <summary>
+        /// textBoxBazaKorisnik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxBazaKorisnik;
+        
+        /// <summary>
+        /// textBoxBazaLozinka control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxBazaLozinka;
+        
+        /// <summary>
+        /// checkBoxBazaIntegratedAuth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkBoxBazaIntegratedAuth;
     }
 }
