@@ -103,15 +103,6 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.ListView ListViewSemafori;
         
         /// <summary>
-        /// ListViewUpiti control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewUpiti;
-        
-        /// <summary>
         /// linkButtonDodajServer control.
         /// </summary>
         /// <remarks>
@@ -130,13 +121,22 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.ListView ListViewServeri;
         
         /// <summary>
-        /// ListViewBaze control.
+        /// linkButtonDodajUpit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewBaze;
+        protected global::System.Web.UI.WebControls.LinkButton linkButtonDodajUpit;
+        
+        /// <summary>
+        /// ListViewUpiti control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewUpiti;
         
         /// <summary>
         /// contentUpdatePanel control.
@@ -274,6 +274,114 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editUpit;
         
         /// <summary>
+        /// LinkButtonBrisiUpit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiUpit;
+        
+        /// <summary>
+        /// labelUpitID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelUpitID;
+        
+        /// <summary>
+        /// textBoxUpitNaziv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxUpitNaziv;
+        
+        /// <summary>
+        /// dropDownListUpitOdaberiDatasource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropDownListUpitOdaberiDatasource;
+        
+        /// <summary>
+        /// textBoxUpitDefinicija control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxUpitDefinicija;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        
+        /// <summary>
+        /// RegularExpressionValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        
+        /// <summary>
+        /// RegularExpressionValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+        
+        /// <summary>
+        /// RegularExpressionValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
+        
+        /// <summary>
+        /// RegularExpressionValidator5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator5;
+        
+        /// <summary>
+        /// buttonUpitSnimi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonUpitSnimi;
+        
+        /// <summary>
+        /// buttonUpitTestiraj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonUpitTestiraj;
+        
+        /// <summary>
         /// editServer control.
         /// </summary>
         /// <remarks>
@@ -281,6 +389,15 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editServer;
+        
+        /// <summary>
+        /// LinkButtonBrisiServerDatasource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiServerDatasource;
         
         /// <summary>
         /// labelServerID control.
@@ -319,6 +436,15 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseName;
         
         /// <summary>
+        /// textBoxServerDatabaseAttachString control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseAttachString;
+        
+        /// <summary>
         /// checkBoxServerDatabaseIntegratedAuth control.
         /// </summary>
         /// <remarks>
@@ -344,15 +470,6 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseLozinka;
-        
-        /// <summary>
-        /// textBoxServerDatabaseAttachString control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxServerDatabaseAttachString;
         
         /// <summary>
         /// buttonProvjeriServerDatabaseString control.
@@ -382,57 +499,84 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.Label labelServerProvjeraStringa;
         
         /// <summary>
-        /// editBaza control.
+        /// prikazTestUpita control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editBaza;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl prikazTestUpita;
         
         /// <summary>
-        /// labelBazaID control.
+        /// buttonPrikazTestUpit_OK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelBazaID;
+        protected global::System.Web.UI.WebControls.Button buttonPrikazTestUpit_OK;
         
         /// <summary>
-        /// textBoxBazaNaziv control.
+        /// modalEditori control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxBazaNaziv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalEditori;
         
         /// <summary>
-        /// textBoxBazaKorisnik control.
+        /// modalBackground control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxBazaKorisnik;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl modalBackground;
         
         /// <summary>
-        /// textBoxBazaLozinka control.
+        /// lebdeciDialog control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textBoxBazaLozinka;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lebdeciDialog;
         
         /// <summary>
-        /// checkBoxBazaIntegratedAuth control.
+        /// labelLebdeciDialogPitanje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox checkBoxBazaIntegratedAuth;
+        protected global::System.Web.UI.WebControls.Label labelLebdeciDialogPitanje;
+        
+        /// <summary>
+        /// labelLebdeciDialogOdgovor control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelLebdeciDialogOdgovor;
+        
+        /// <summary>
+        /// buttonLebdeciDialogOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonLebdeciDialogOK;
+        
+        /// <summary>
+        /// buttonLebdeciDialogCANCEL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonLebdeciDialogCANCEL;
     }
 }

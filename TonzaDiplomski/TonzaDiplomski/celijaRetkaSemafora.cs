@@ -18,10 +18,32 @@ namespace TonzaDiplomski {
             //InnerHtml = ID + DateTime.Now;
             dohvatiPodatke(celijaID);
 
-            PitaGraf pita = new PitaGraf(naslovCelije, podaciZaGraf);
-            InnerHtml = pita.ToString();
+            SemaforiDataContext db = new SemaforiDataContext();
 
-            
+            tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
+
+            if (celija.grafID == 1) {
+                PitaGraf pita = new PitaGraf(naslovCelije, podaciZaGraf);
+                InnerHtml = pita.ToString();
+            }
+
+            if (celija.grafID == 2) {
+                StupciGraf pita = new StupciGraf(naslovCelije, podaciZaGraf,1);
+                InnerHtml = pita.ToString();
+            }
+
+            if (celija.grafID == 3) {
+                StupciGraf pita = new StupciGraf(naslovCelije, podaciZaGraf, 2);
+                InnerHtml = pita.ToString();
+            }
+
+            if (celija.grafID == 4) {
+                CrtaGraf pita = new CrtaGraf(naslovCelije, podaciZaGraf,1);
+                InnerHtml = pita.ToString();
+            }
+
+
+
         }
 
         void dohvatiPodatke(int celijaID) {
@@ -30,44 +52,48 @@ namespace TonzaDiplomski {
             */
 
             SemaforiDataContext db = new SemaforiDataContext();
-            IEnumerable<viewCelijaPodaci>
-               celijaPodaci = from cP in db.viewCelijaPodacis
+
+            viewCelijaPodaci celijaPodaci = (from cP in db.viewCelijaPodacis
                         where cP.id == celijaID
-                        select cP;
+                        select cP).Single();
 
             string connstring;
-            naslovCelije = celijaPodaci.Last().upitNaziv;
+            naslovCelije = celijaPodaci.upitNaziv;
 
-            //connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Integrated Security = False; User ID=tonza;Password=tonza";
-            connstring = "Server = "+celijaPodaci.Last().serverString+";";
+            
+            connstring = "Server = "+celijaPodaci.serverString+";";
 
             // ovaj dio dopisujemo samo ako postoji u bazi, a koristi se samo kad se radi o localDB-u, kada treba attachati bazu. Kad se spajamo na "Veliki" SQL to nam ne treba, pa kod unosa upozori korisnika na to
-            if (celijaPodaci.Last().dbAttachString.Length>0)
-                connstring += "AttachDbFileName= " + celijaPodaci.Last().dbAttachString + ";";
+            if (celijaPodaci.dbAttachString !=null && celijaPodaci.dbAttachString.Length>0)
+                connstring += "AttachDbFileName= " + celijaPodaci.dbAttachString + ";";
 
-
-            connstring += "Database = " + celijaPodaci.Last().dbNaziv + ";";
-            connstring += "Integrated Security = " + (celijaPodaci.Last().integratedAuth==true ? "True" : "False")+";";
-            connstring += "User ID=" + celijaPodaci.Last().korisnik + ";";
-            connstring += "Password=" + celijaPodaci.Last().lozinka + ";";
+            SimplerAES saes = new SimplerAES();
+            connstring += "Database = " + celijaPodaci.dbNaziv + ";";
+            connstring += "Integrated Security = " + (celijaPodaci.integratedAuth==true ? "True" : "False")+";";
+            connstring += "User ID=" + celijaPodaci.korisnik + ";";
+            connstring += "Password=" + saes.Decrypt(celijaPodaci.lozinka) + ";";
 
             SqlConnection myConn = new SqlConnection(connstring);
-            SqlCommand cmd = new SqlCommand(celijaPodaci.Last().upit, myConn);
+            SqlCommand cmd = new SqlCommand(celijaPodaci.upit, myConn);
 
-            myConn.Open();
+            try {
+                myConn.Open();
 
-            string bla;
-            // napuni podatke u listu podataka za graf
-            using (SqlDataReader oReader = cmd.ExecuteReader()) {
-                while (oReader.Read()) {
+                string bla;
+                // napuni podatke u listu podataka za graf
+                using (SqlDataReader oReader = cmd.ExecuteReader()) {
+                    while (oReader.Read()) {
 
-                    podaciZaGraf.Add(new PodatakZaGraf(oReader.GetValue(0).ToString(), (double)(decimal)oReader.GetValue(1)));
-                 
+                        podaciZaGraf.Add(new PodatakZaGraf(oReader.GetValue(0).ToString(), (double)(decimal)oReader.GetValue(1)));
+
+                    }
+
+                    myConn.Close();
                 }
-
-                myConn.Close();
             }
+            catch (Exception e22) {
 
+            }
 
         }
     }

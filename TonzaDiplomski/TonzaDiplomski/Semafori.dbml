@@ -103,6 +103,19 @@
       <Association Name="tblServer_tblDB" Member="tblDBs" ThisKey="id" OtherKey="serverid" Type="tblDB" />
     </Type>
   </Table>
+  <Table Name="dbo.viewDatasource" Member="viewDatasources">
+    <Type Name="viewDatasource">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="serverString" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="naziv" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="dbID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dbNaziv" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="dbAttachString" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="korisnik" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="lozinka" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="integratedAuth" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.dajPopisBaza" Method="dajPopisBaza">
     <ElementType Name="dajPopisBazaResult">
       <Column Name="database_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

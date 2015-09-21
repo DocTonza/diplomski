@@ -180,6 +180,8 @@ namespace TonzaDiplomski {
 
             (sender as LinkButton).CssClass = "stranica";
 
+            contentUpdatePanel.Update();
+
         }
 
         protected void TextBoxStranicaVrijemePrikazivanja_TextChanged(object sender, EventArgs e) {
@@ -382,10 +384,14 @@ namespace TonzaDiplomski {
             db.tblRedaks.InsertOnSubmit(redak);
             db.SubmitChanges();
 
+            //po defaultu nam graID i upitID ne postoje, pa nas onda strga u null vrijednosti kod prikaza !!!
+
             //upisi celije
             for (int i = 0; i < 3; ++i) {
                 tblCelija celija = new tblCelija();
                 celija.redakID = redak.id;
+                celija.upitID = 9999;
+                celija.grafID = 9999;
                 db.tblCelijas.InsertOnSubmit(celija);
                 db.SubmitChanges();
             }
@@ -467,13 +473,13 @@ namespace TonzaDiplomski {
             SemaforiDataContext db = new SemaforiDataContext();
             var baza = (from tblDB in db.tblDBs where tblDB.id == pbazaID select tblDB).Single();
 
-            labelBazaID.Text = baza.id.ToString();
-            textBoxBazaNaziv.Text = baza.naziv;
-            textBoxBazaKorisnik.Text = baza.korisnik;
-            textBoxBazaLozinka.Text = baza.lozinka;
-            //checkBoxBazaIntegratedAuth.
+            //labelBazaID.Text = baza.id.ToString();
+            //textBoxBazaNaziv.Text = baza.naziv;
+            //textBoxBazaKorisnik.Text = baza.korisnik;
+            //textBoxBazaLozinka.Text = baza.lozinka;
+            ////checkBoxBazaIntegratedAuth.
 
-            prikaziContentDiv("baza");
+            //prikaziContentDiv("baza");
 
 
         }
@@ -485,7 +491,7 @@ namespace TonzaDiplomski {
             editSemafor.Visible = false;
             editServer.Visible = false;
             editUpit.Visible = false;
-            editBaza.Visible = false;
+            //editBaza.Visible = false;
 
             switch (contentDIV) {
 
@@ -499,11 +505,12 @@ namespace TonzaDiplomski {
                     editUpit.Visible = true;
                     break;
                 case "baza":
-                    editBaza.Visible = true;
+              //      editBaza.Visible = true;
                     break;
             }
 
             contentUpdatePanel.Update();
+            menuUpdatePanel.Update();
 
 
         }
@@ -534,8 +541,13 @@ namespace TonzaDiplomski {
                 textBoxServerDatabaseLozinka.Enabled = false;
 
             }
+            else {
+                checkBoxServerDatabaseIntegratedAuth.Checked = false;
+                textBoxServerDatabaseKorisnik.Enabled = true;
+                textBoxServerDatabaseLozinka.Enabled = true;
+            }
             textBoxServerDatabaseKorisnik.Text = dbase.korisnik;
-            textBoxServerDatabaseLozinka.Text = dbase.lozinka;
+            textBoxServerDatabaseLozinka.Attributes["h"] = dbase.lozinka;
             textBoxServerDatabaseAttachString.Text = dbase.dbAttachString;
 
             //po defaultu je snimi disabled
@@ -548,6 +560,7 @@ namespace TonzaDiplomski {
 
         protected void buttonProvjeriServerDatabaseString_Click(object sender, EventArgs e) {
 
+            SimplerAES saes = new SimplerAES();
             string connstring;
             // tu sad testiramo da li se možemo spojiti na server ili ćemo dobiti grešku
             //connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Integrated Security = False; User ID=tonza;Password=tonza";
@@ -559,29 +572,40 @@ namespace TonzaDiplomski {
 
 
             connstring += "Database = " + textBoxServerDatabaseName.Text + ";";
-            connstring += "Integrated Security = " + (checkBoxBazaIntegratedAuth.Checked == true ? "True" : "False") + ";";
-            connstring += "User ID=" + textBoxServerDatabaseKorisnik.Text + ";";
-            connstring += "Password=" + textBoxServerDatabaseLozinka.Text + ";";
+            connstring += "Integrated Security = " + (checkBoxServerDatabaseIntegratedAuth.Checked == true ? "True" : "False") + ";";
+
+            // ako se ne koristi integrated, onda trebamo user name i password
+            if (!checkBoxServerDatabaseIntegratedAuth.Checked) {
+                connstring += "User ID=" + textBoxServerDatabaseKorisnik.Text + ";";
+                connstring += "Password=" + textBoxServerDatabaseLozinka.Text + ";";
+            }
+            // mi bi i manji timeout isto
+            connstring += "Connection Timeout=3";
+
 
             bool uspjesno = true;
+            string greska ="";
+            SqlConnection myConn = new SqlConnection(connstring);
+            
+
             try {
-                SqlConnection myConn = new SqlConnection(connstring);
-                //SqlCommand cmd = new SqlCommand(celijaPodaci.Last().upit, myConn);
-
-
+            
                 myConn.Open();
 
             }
-            catch (Exception se) {
+            catch (SqlException se ) {
                 uspjesno = false;
+                greska = se.Message;
             }
+
             if (uspjesno) {
-                labelServerProvjeraStringa.Text = "Uspješno spajanje na server :)";
+                labelServerProvjeraStringa.Text = "Uspješno spajanje na server. Ne zaboravite snimiti testirane postavke.";
+                textBoxServerDatabaseLozinka.Attributes["h"] = saes.Encrypt(textBoxServerDatabaseLozinka.Text);
                 // dozvoli snimanje podataka
                 buttonServerSnimiPostavke.Enabled = true;
             }
             else {
-                labelServerProvjeraStringa.Text = "Neuspješno spajanje na server !!!";
+                labelServerProvjeraStringa.Text = "Neuspješno spajanje na server !!! Greška:"+greska;
             }
 
         }
@@ -599,30 +623,78 @@ namespace TonzaDiplomski {
 
         protected void buttonServerSnimiPostavke_Click(object sender, EventArgs e) {
 
+
             SemaforiDataContext db = new SemaforiDataContext();
-            tblServer server = (from tblServer in db.tblServers where tblServer.id == Convert.ToInt32(labelServerID.Text) select tblServer).Single();
+            SimplerAES saes = new SimplerAES();
 
-            //tblServer server = new tblServer();
-            //tblDB dbase = new tblDB();
+            if (Convert.ToInt32(labelServerID.Text) > 0) {                  // ako imamo ID, znači da mijenjamo postojeći 
+                tblServer server = (from tblServer in db.tblServers where tblServer.id == Convert.ToInt32(labelServerID.Text) select tblServer).Single();
 
-            server.naziv = textBoxServerNaziv.Text;
-            server.serverString = textBoxServerServerString.Text;
+                
 
-            db.SubmitChanges();
+                server.naziv = textBoxServerNaziv.Text;
+                server.serverString = textBoxServerServerString.Text;
 
-            tblDB dbase = (from tblDB in db.tblDBs where tblDB.serverid == server.id select tblDB).Single();
+                db.SubmitChanges();
 
-            dbase.naziv = textBoxServerDatabaseName.Text;
-            dbase.serverid = server.id;
-            dbase.integratedAuth = checkBoxServerDatabaseIntegratedAuth.Checked;
-            dbase.korisnik = textBoxServerDatabaseKorisnik.Text;
-            dbase.dbAttachString = textBoxServerDatabaseAttachString.Text;
-            dbase.lozinka = textBoxServerDatabaseLozinka.Text;
+                tblDB dbase = (from tblDB in db.tblDBs where tblDB.serverid == server.id select tblDB).Single();
 
-            db.SubmitChanges();
+                dbase.naziv = textBoxServerDatabaseName.Text;
+                dbase.serverid = server.id;
+                dbase.integratedAuth = checkBoxServerDatabaseIntegratedAuth.Checked;
+                dbase.korisnik = textBoxServerDatabaseKorisnik.Text;
+                dbase.dbAttachString = textBoxServerDatabaseAttachString.Text;
 
-            (sender as Button).Enabled = false;
-            labelServerProvjeraStringa.Text = "";
+
+                // kriptiramo lozinku da je baš ne spremimo u clear text u bazu
+
+                
+                 // ako nešto piše u TXt, to je nova lozinka. Spremi u H atribut           
+                if (textBoxServerDatabaseLozinka.Text.Length>0) {
+                    textBoxServerDatabaseLozinka.Attributes["h"] = saes.Encrypt(textBoxServerDatabaseLozinka.Text);
+                }
+
+                
+                dbase.lozinka = textBoxServerDatabaseLozinka.Attributes["h"];
+                
+
+                db.SubmitChanges();
+
+                (sender as Button).Enabled = false;
+                labelServerProvjeraStringa.Text = "";
+
+            }
+            else {      //nemamo ID, upisujemo novi
+
+                tblServer server = new tblServer();
+                tblDB dbase = new tblDB();
+
+                server.naziv = textBoxServerNaziv.Text;
+                server.serverString = textBoxServerServerString.Text;
+
+                db.tblServers.InsertOnSubmit(server);
+                db.SubmitChanges();
+
+                dbase.naziv = textBoxServerDatabaseName.Text;
+                dbase.serverid = server.id;
+                dbase.integratedAuth = checkBoxServerDatabaseIntegratedAuth.Checked;
+                dbase.korisnik = textBoxServerDatabaseKorisnik.Text;
+                dbase.dbAttachString = textBoxServerDatabaseAttachString.Text;
+
+                
+                // kriptiramo password prije nego ga upišemo u bazu
+
+                textBoxServerDatabaseLozinka.Attributes["h"] = saes.Encrypt(textBoxServerDatabaseLozinka.Text);
+                dbase.lozinka = saes.Encrypt(textBoxServerDatabaseLozinka.Text);
+
+                db.tblDBs.InsertOnSubmit(dbase);
+                db.SubmitChanges();
+
+                (sender as Button).Enabled = false;
+                labelServerProvjeraStringa.Text = "";
+
+
+            }
 
             ListViewServeri.DataBind();
             menuUpdatePanel.Update();   
@@ -632,8 +704,336 @@ namespace TonzaDiplomski {
 
         protected void linkButtonDodajServer_Click(object sender, EventArgs e) {
 
+            // dodajemo server, znači prikazujemo formu za server sa praznim poljima
+
+            labelServerID.Text = "-1";          //kad je -1, znači da dodajemo novi, a ne mijenjamo postojeći. To nam treba kad radimo snimanje
+            textBoxServerNaziv.Text = "";
+            textBoxServerServerString.Text = "";
+            textBoxServerDatabaseName.Text = "";
+            checkBoxServerDatabaseIntegratedAuth.Checked = false;
+            textBoxServerDatabaseKorisnik.Text = "";
+            textBoxServerDatabaseLozinka.Text = "";
+            textBoxServerDatabaseAttachString.Text = "";
+
+            textBoxServerDatabaseLozinka.Attributes["h"] = "";          //nema h-a
+
+            prikaziContentDiv("server");
+
+
+
         }
-        //}
+
+        protected void LinkButtonBrisiServerDatasource_Click(object sender, EventArgs e) {
+            // brisemo sada taj datasource
+            SemaforiDataContext db = new SemaforiDataContext();
+
+            tblServer server = (from s in db.tblServers where s.id == Convert.ToInt32(labelServerID.Text) select s).Single();
+            tblDB dbase = (from d in db.tblDBs where d.serverid == server.id select d).Single();
+
+            db.tblServers.DeleteOnSubmit(server);
+            db.tblDBs.DeleteOnSubmit(dbase);
+            db.SubmitChanges();
+
+            ListViewServeri.DataBind();
+            prikaziContentDiv("nista");
+
+
+        }
+
+        protected void buttonLebdeciDialogOK_Click(object sender, EventArgs e) {
+            labelLebdeciDialogOdgovor.Text = "DA";
+        }
+
+        protected void buttonLebdeciDialogCANCEL_Click(object sender, EventArgs e) {
+            labelLebdeciDialogOdgovor.Text = "NE";
+        }
+
+        protected bool postaviPitanje(string pitanje) {
+            
+            return (labelLebdeciDialogOdgovor.Text == "DA"?true:false);
+        }
+
+        protected void linkButtonDodajUpit_Click(object sender, EventArgs e) {
+            // dodajemo novi upit; postavi prazne kontrole
+            labelUpitID.Text = "-1";
+            textBoxUpitNaziv.Text = "";
+            textBoxUpitDefinicija.Text = "";
+
+            //dropDownListUpitOdaberiDatasource.SelectedValue=1
+
+            if (dropDownListUpitOdaberiDatasource.Items.FindByValue("10000") == null) {
+                dropDownListUpitOdaberiDatasource.Items.Add(new ListItem("Odaberite izvor", "10000"));
+            }
+
+            dropDownListUpitOdaberiDatasource.SelectedValue = "10000";
+
+            prikaziContentDiv("upit");
+
+        }
+
+        protected void ListViewUpiti_ItemCommand(object sender, ListViewCommandEventArgs e) {
+            prikaziUpit(Convert.ToInt32(e.CommandArgument));
+            
+        }
+
+        private void prikaziUpit(int pUpitID) {
+
+            SemaforiDataContext db = new SemaforiDataContext();
+
+            tblUpit upit = (from u in db.tblUpits where u.id == pUpitID select u).Single();
+
+            // napuni kontrole.
+            labelUpitID.Text = upit.id.ToString();
+            textBoxUpitNaziv.Text = upit.naziv;
+            textBoxUpitDefinicija.Text = upit.upit;
+
+            //dropdown za odabir datasource-a
+            dropDownListUpitOdaberiDatasource.SelectedValue = upit.serverID.ToString();
+
+
+            prikaziContentDiv("upit");
+
+        }
+
+        protected void buttonUpitSnimi_Click(object sender, EventArgs e) {
+
+            SemaforiDataContext db = new SemaforiDataContext();
+
+            // slično kao i kod servera; ako je Id=-1, onda je dodavanje novog, inače je edit
+            
+
+            if (Convert.ToInt32(labelUpitID.Text)>0) {              //edit postojećeg
+
+                
+
+                tblUpit upit = (from u in db.tblUpits where u.id == Convert.ToInt32(labelUpitID.Text) select u).Single();
+                upit.naziv = textBoxUpitNaziv.Text;
+                upit.upit = textBoxUpitDefinicija.Text;
+                upit.serverID = Convert.ToInt32(dropDownListUpitOdaberiDatasource.SelectedValue);
+
+                // petljanje, ali kad se mora.
+
+                tblDB dbase = (from d in db.tblDBs where d.serverid == upit.serverID select d).Single();
+                upit.dbID = dbase.id;
+
+                db.SubmitChanges();
+
+                
+            }
+            else {                              //dodajemo novi
+
+                tblUpit upit = new tblUpit();
+
+                upit.naziv = textBoxUpitNaziv.Text;
+                upit.upit = textBoxUpitDefinicija.Text;
+                upit.serverID = Convert.ToInt32(dropDownListUpitOdaberiDatasource.SelectedValue);
+
+                // petljanje, ali kad se mora.
+                tblDB dbase = (from d in db.tblDBs where d.serverid == upit.serverID select d).Single();
+                upit.dbID = dbase.id;
+
+                db.tblUpits.InsertOnSubmit(upit);
+                db.SubmitChanges();
+
+            }
+
+            ListViewUpiti.DataBind();
+            menuUpdatePanel.Update();
+        }
+
+        protected void buttonUpitTestiraj_Click(object sender, EventArgs e) {
+
+            // generiramo upit i dovlačimo podatke, te ih prikazujemo u gridu na posebnom layeru
+
+            SemaforiDataContext db = new SemaforiDataContext();
+            SimplerAES saes = new SimplerAES();
+
+            string connstring;
+
+            viewDatasource datasrc = (from s in db.viewDatasources where s.id == Convert.ToInt32(dropDownListUpitOdaberiDatasource.SelectedValue) select s).First();   //može biti više, daj samo prvi koji štima
+
+            // tu sad testiramo da li se možemo spojiti na server ili ćemo dobiti grešku
+            //connString = "Server = (LocalDB)\\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\\BMS_Data.mdf; Integrated Security = False; User ID=tonza;Password=tonza";
+            connstring = "Server = " + datasrc.serverString + ";";
+
+            // ovaj dio dopisujemo samo ako postoji u bazi, a koristi se samo kad se radi o localDB-u, kada treba attachati bazu. Kad se spajamo na "Veliki" SQL to nam ne treba, pa kod unosa upozori korisnika na to
+            if (datasrc.dbAttachString.Length > 0)
+                connstring += "AttachDbFileName= " + datasrc.dbAttachString + ";";
+
+
+            connstring += "Database = " + datasrc.dbNaziv + ";";
+            connstring += "Integrated Security = " + (datasrc.integratedAuth == true ? "True" : "False") + ";";
+
+            // ako se ne koristi integrated, onda trebamo user name i password
+            if (!datasrc.integratedAuth) {
+                connstring += "User ID=" + datasrc.korisnik + ";";
+                connstring += "Password=" + saes.Decrypt(datasrc.lozinka) + ";";
+            }
+            // mi bi i manji timeout isto
+            connstring += "Connection Timeout=3";
+
+
+            bool uspjesno = true;
+            string greska = "";
+            SqlConnection myConn = new SqlConnection(connstring);
+
+
+            try {
+
+                myConn.Open();
+
+            }
+            catch (SqlException se) {
+                uspjesno = false;
+                greska = se.Message;
+            }
+
+            if (uspjesno) {
+
+                SqlCommand komanda = new SqlCommand(textBoxUpitDefinicija.Text,myConn);
+                SqlDataReader citac;  // = new SqlDataReader();
+
+                using (SqlDataReader oReader = komanda.ExecuteReader()) {
+
+
+                    // pazi, ne smije biti više od 2 stupca
+
+                    HtmlTable tablica = new HtmlTable();
+                    HtmlTableRow red;
+                    HtmlTableCell celija;
+                    //tablica.Attributes["Style"] = "border: 1px solid black; margin-left:auto;margin-right:auto;";
+                    tablica.Attributes.Add("class", "previewUpitTablica");
+                    //tablica.Border = 1;
+                    //tablica.CellPadding = 1;
+                    //tablica.CellSpacing = 1;
+                    red = new HtmlTableRow();
+
+                    // dodaj naslov tablice
+
+                    for (int i = 0;i< 2; ++i) {
+                        celija = new HtmlTableCell();
+                        celija.Attributes.Add("class", "previewUpitNaslov");
+                        celija.InnerHtml = oReader.GetName(i);
+                            red.Cells.Add(celija);
+                    }
+
+                    tablica.Rows.Add(red);
+
+                   
+
+                    while (oReader.Read()) {
+
+                        red = new HtmlTableRow();
+
+                        for (int i = 0; i < 2; ++i) {
+                            celija = new HtmlTableCell();
+                            //celija.Attributes["Style"] = "border: 1px solid black; ";
+                            celija.Attributes.Add("class", "previewUpitTd"+(i%2).ToString());
+                            celija.InnerHtml = oReader.GetValue(i).ToString();
+                            red.Cells.Add(celija);
+                        }
+                        tablica.Rows.Add(red);
+
+                    }
+
+                    myConn.Close();
+                    prikazTestUpita.Attributes.Add("style", "height:400px");
+                    prikazTestUpita.Controls.AddAt(0,tablica);
+                }
+
+            }
+            else {
+                // nema
+            }
+
+
+
+
+
+            prikazTestUpita.Visible = true;
+
+
+
+
+
+        }
+
+        protected void buttonPrikazTestUpit_OK_Click(object sender, EventArgs e) {
+            prikazTestUpita.Visible = false;
+        }
+
+        protected void DropDownListOdabirUpita_SelectedIndexChanged(object sender, EventArgs e) {
+            // upiši u tablicu celije koji upit smo odabrali
+
+            // celijaID nam je zapisana kao custom atribut za svaki dropdown
+
+            int celijaID =Convert.ToInt32((sender as DropDownList).Attributes["celijaID"]);
+            
+
+            SemaforiDataContext db = new SemaforiDataContext();
+            tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
+            celija.upitID = Convert.ToInt32((sender as DropDownList).SelectedValue);
+
+            db.SubmitChanges();
+
+            
+
+
+        }
+
+        protected void DropDownListcelijaOdabirVrsteGrafa_SelectedIndexChanged(object sender, EventArgs e) {
+            // upiši u tablicu celije koji graf smo odabrali
+
+            // celijaID nam je zapisana kao custom atribut za svaki dropdown
+
+            int celijaID = Convert.ToInt32((sender as DropDownList).Attributes["celijaID"]);
+
+
+            SemaforiDataContext db = new SemaforiDataContext();
+            tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
+            celija.grafID = Convert.ToInt32((sender as DropDownList).SelectedValue);
+
+            db.SubmitChanges();
+        }
+
+        protected void DropDownListcelijaOdabirVrsteGrafa_DataBinding(object sender, EventArgs e) {
+            // tu smo kad bi spajali podatke :-)
+            //prikazujemo selected value ovisno o Id-uint upisanom u tblCelija. Stvar je u tome da kad upisujemo novu celiju, kao id za graf upisujemo 9999 
+            int celijaID = Convert.ToInt32((sender as DropDownList).Attributes["celijaID"]);
+            SemaforiDataContext db = new SemaforiDataContext();
+
+            tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
+
+            if (celija.grafID != 9999) {
+                (sender as DropDownList).SelectedValue = celija.grafID.ToString();
+            }
+
+        }
+
+        protected void DropDownListOdabirUpita_DataBinding(object sender, EventArgs e) {
+            // tu smo kad bi spajali podatke :-)
+            //prikazujemo selected value ovisno o Id-uint upisanom u tblCelija. Stvar je u tome da kad upisujemo novu celiju, kao id za upit upisujemo 9999 
+            int celijaID = Convert.ToInt32((sender as DropDownList).Attributes["celijaID"]);
+            SemaforiDataContext db = new SemaforiDataContext();
+
+            tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
+            
+
+            if (celija.upitID != 9999) {
+                (sender as DropDownList).SelectedValue = celija.upitID.ToString();
+            }
+            else {
+           //     vidi da li postoji već sa 9999. ako ne postoji, dodaj ga
+           if ((sender as DropDownList).Items.FindByValue("9999") == null) {
+                    (sender as DropDownList).Items.Insert(0, new ListItem("Odaberite", "9999"));
+                   
+                    contentUpdatePanel.Update();
+                }
+
+
+            }
+        }
+
 
 
 

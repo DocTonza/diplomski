@@ -469,6 +469,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Semafori.dbml</DependentUpon>
     </Compile>
+    <Compile Include="simpleAES.cs" />
+    <Compile Include="simplerAES.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -483,11 +485,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Soljenka.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="stranicaSemafora.cs" />
     <Compile Include="StupacZaGraf_v1.cs" />
     <Compile Include="StupacZaGraf_v2.cs" />
     <Compile Include="StupciGraf.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

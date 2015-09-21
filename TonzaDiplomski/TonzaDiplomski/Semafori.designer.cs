@@ -166,6 +166,14 @@ namespace TonzaDiplomski
 			}
 		}
 		
+		public System.Data.Linq.Table<viewDatasource> viewDatasources
+		{
+			get
+			{
+				return this.GetTable<viewDatasource>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.dajPopisBaza")]
 		public ISingleResult<dajPopisBazaResult> dajPopisBaza()
 		{
@@ -2077,6 +2085,177 @@ namespace TonzaDiplomski
 		{
 			this.SendPropertyChanging();
 			entity.tblServer = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.viewDatasource")]
+	public partial class viewDatasource
+	{
+		
+		private int _id;
+		
+		private string _serverString;
+		
+		private string _naziv;
+		
+		private System.Nullable<int> _dbID;
+		
+		private string _dbNaziv;
+		
+		private string _dbAttachString;
+		
+		private string _korisnik;
+		
+		private string _lozinka;
+		
+		private bool _integratedAuth;
+		
+		public viewDatasource()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_serverString", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string serverString
+		{
+			get
+			{
+				return this._serverString;
+			}
+			set
+			{
+				if ((this._serverString != value))
+				{
+					this._serverString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_naziv", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string naziv
+		{
+			get
+			{
+				return this._naziv;
+			}
+			set
+			{
+				if ((this._naziv != value))
+				{
+					this._naziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbID", DbType="Int")]
+		public System.Nullable<int> dbID
+		{
+			get
+			{
+				return this._dbID;
+			}
+			set
+			{
+				if ((this._dbID != value))
+				{
+					this._dbID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbNaziv", DbType="NVarChar(250)")]
+		public string dbNaziv
+		{
+			get
+			{
+				return this._dbNaziv;
+			}
+			set
+			{
+				if ((this._dbNaziv != value))
+				{
+					this._dbNaziv = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dbAttachString", DbType="VarChar(250)")]
+		public string dbAttachString
+		{
+			get
+			{
+				return this._dbAttachString;
+			}
+			set
+			{
+				if ((this._dbAttachString != value))
+				{
+					this._dbAttachString = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_korisnik", DbType="NVarChar(250)")]
+		public string korisnik
+		{
+			get
+			{
+				return this._korisnik;
+			}
+			set
+			{
+				if ((this._korisnik != value))
+				{
+					this._korisnik = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lozinka", DbType="NVarChar(250)")]
+		public string lozinka
+		{
+			get
+			{
+				return this._lozinka;
+			}
+			set
+			{
+				if ((this._lozinka != value))
+				{
+					this._lozinka = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_integratedAuth", DbType="Bit NOT NULL")]
+		public bool integratedAuth
+		{
+			get
+			{
+				return this._integratedAuth;
+			}
+			set
+			{
+				if ((this._integratedAuth != value))
+				{
+					this._integratedAuth = value;
+				}
+			}
 		}
 	}
 	
