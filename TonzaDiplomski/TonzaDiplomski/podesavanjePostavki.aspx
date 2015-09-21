@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="__rucniTestEditSucelja.aspx.cs" Inherits="TonzaDiplomski.__rucniTestEditSucelja" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="podesavanjePostavki.aspx.cs" Inherits="TonzaDiplomski.__rucniTestEditSucelja" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 

@@ -222,7 +222,7 @@
     <Content Include="SemaforEdit.aspx" />
     <Content Include="SemaforEdit_problemi.aspx" />
     <Content Include="_test.aspx" />
-    <Content Include="__rucniTestEditSucelja.aspx" />
+    <Content Include="podesavanjePostavki.aspx" />
     <Content Include="___TestDynamic.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="OdaberiSemafor.aspx" />
@@ -506,12 +506,12 @@
     <Compile Include="_test.aspx.designer.cs">
       <DependentUpon>_test.aspx</DependentUpon>
     </Compile>
-    <Compile Include="__rucniTestEditSucelja.aspx.cs">
-      <DependentUpon>__rucniTestEditSucelja.aspx</DependentUpon>
+    <Compile Include="podesavanjePostavki.aspx.cs">
+      <DependentUpon>podesavanjePostavki.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="__rucniTestEditSucelja.aspx.designer.cs">
-      <DependentUpon>__rucniTestEditSucelja.aspx</DependentUpon>
+    <Compile Include="podesavanjePostavki.aspx.designer.cs">
+      <DependentUpon>podesavanjePostavki.aspx</DependentUpon>
     </Compile>
     <Compile Include="___TestDynamic.aspx.cs">
       <DependentUpon>___TestDynamic.aspx</DependentUpon>
