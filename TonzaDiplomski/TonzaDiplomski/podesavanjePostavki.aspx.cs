@@ -258,6 +258,8 @@ namespace TonzaDiplomski {
                     for (int i = 0; i < 3; ++i) {
                         tblCelija celija = new tblCelija();
                         celija.redakID = redak.id;
+                        celija.upitID = 9999;
+                        celija.grafID = 9999;
                         db.tblCelijas.InsertOnSubmit(celija);
                         db.SubmitChanges();
                     }
@@ -312,8 +314,8 @@ namespace TonzaDiplomski {
             for (int i = 0; i < 3; ++i) {
                 tblCelija celija = new tblCelija();
                 celija.redakID = redak.id;
-                celija.grafID = 1;              //samo privremeno da ne bude problema kasnije !!!
-                celija.upitID = 1;
+                celija.grafID = 9999;              //samo privremeno da ne bude problema kasnije !!!
+                celija.upitID = 9999;
                 db.tblCelijas.InsertOnSubmit(celija);
                 db.SubmitChanges();
             }
