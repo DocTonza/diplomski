@@ -3,15 +3,46 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <style>
+        body {
+            background-color: #e6e6e6;
+            font-family: 'Arial Unicode MS';
+            font-size:16px;
+        }
+
+        input {
+            font-family: 'Arial Unicode MS';
+            border:1px solid #e6e6e6;
+        }
+
         #glavni {
-            background-color: aquamarine;
+            background-color: #e6e6e6;
             margin-left: auto;
             margin-right: auto;
             width: 80%;
             overflow: hidden;
         }
 
+        .naslov {
+            /*position: relative;*/
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            width: 79%;
+            background-color: white;
+            color: black;
+            padding-top: 15px;
+            padding-bottom: 5px;
+            align-content: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-size: 24px;
+            font-family: 'Arial Unicode MS';
+            font-weight: bold;
+            align-items: center;
+        }
+
         .lijeviContent {
+            font-family: 'Arial Unicode MS';
             position: relative;
             /*left: 10px;
             top: 120px;*/
@@ -19,33 +50,85 @@
             width: 15%;
             background-color: white;
             color: black;
+            padding: 5px;
+            margin-left: 8px;
+            margin-right: 10px;
+            margin-top: 15px;
+            margin-bottom: 20px;
         }
 
         .desniContent {
             position: relative;
             /*left: 220px;
             top: 120px;*/
-            float: left;
-            width: 85%;
-            background-color: lightgray;
+            float: right;
+            width: 82%;
+            /*background-color: white;*/
             color: black;
-            padding: 10px;
+            padding: 5px;
+            margin-top: 12px;
+            margin-left: 0px;
+            margin-right: 7px;
+        }
+        .semaforNaslov {
+            padding:2px;
+            font-weight:normal;
+            font-size:16px;
+            font-family: 'Arial Unicode MS';
+            text-align:left;
+            background-color: white;
+            margin-bottom:20px;
+            padding-left:20px;
+            padding-bottom:30px;
+            padding-top:2px;
+            padding-right:5px;
         }
 
-        #straniceContainer {
+        .straniceContainer {
             position: relative;
             /*left: 220px;
             top: 120px;*/
             float: left;
             width: 100%;
             height: 600px;
-            background-color: purple;
+            background-color: white;
             color: black;
+            padding-left:20px;
+            padding-top:5px;
+            padding-right:5px;
         }
 
         .stranica {
-            background-color: antiquewhite;
-            padding: 10px;
+            display:inline-block;
+            background-color: #e6e6e6;
+            justify-content:center;
+            align-content:center;
+            padding-left: 12px;
+            padding-top:10px;
+            width:120px;
+            height:40px;
+        }
+        .stranicaBijelo {
+            display:inline-block;
+            background-color: white;
+           justify-content:center;
+            padding-left: 12px;
+            padding-top:10px;
+            width:120px;
+            height:40px;
+        }
+
+        .stranicaDetalj {
+            background-color: #e6e6e6;
+            padding-top: 20px;
+            padding-left:20px;
+            padding-right:20px;
+            padding-bottom:10px;
+            margin-left:-15px;
+            margin-righr:15px;
+            font-size:16px;
+            font-family: 'Arial Unicode MS';
+            
         }
 
         .Bero {
@@ -55,18 +138,18 @@
 
         .red {
             height: 40%;
-            background-color: green;
-            margin: 5px;
+            background-color: rgb(222, 217, 217);
+            margin-bottom: 10px;
             clear: left;
-            padding: 2px;
+            padding: 20px;
         }
 
         .celija {
             /*float:left;*/
             display: inline-block;
-            margin: 5px;
-            border: 1px solid black;
-            padding: 2px;
+            margin: 1px;
+            /*border: 1px solid black;*/
+            padding: 5px;
             background-color: white;
             width: 32%;
         }
@@ -85,6 +168,30 @@
             width: 650px;
             height: 200px;
             resize: none;
+            margin:2px;
+            
+        }
+        .dropDownSelectUpita {
+            margin:2px;
+            border:1px solid #e6e6e6;
+            width:100%;
+
+        }
+        .dropDownSelectGrafa {
+            margin:2px;
+            border:1px solid #e6e6e6;
+            width:100%;
+
+        }
+        td {
+
+            font-size:16px;
+            font-family: 'Arial Unicode MS';
+            padding:10px;
+        }
+        table {
+
+            left-margin:100px;
         }
     </style>
 
@@ -127,14 +234,19 @@
     <asp:LinqDataSource ID="bazeSrc" runat="server" ContextTypeName="TonzaDiplomski.SemaforiDataContext" EntityTypeName="" Select="new (id, dbAttachString, naziv, korisnik, lozinka, salt, integratedAuth)" TableName="tblDBs"></asp:LinqDataSource>
 
 
+    <div id="naslov" runat="server" class="naslov sjena">
+        <p>Podešavanje postavki:</p>
+    </div>
     <div id="glavni">
+
+
 
 
         <%--lijevi menu--%>
         <asp:UpdatePanel runat="server" ID="menuUpdatePanel" UpdateMode="Conditional">
             <ContentTemplate>
 
-                <div id="lijeviContent" runat="server" class="lijeviContent">
+                <div id="lijeviContent" runat="server" class="lijeviContent sjena">
 
                     <br />
                     Semafori <span class="maliNavText">(<asp:LinkButton ID="linkButtonDodajSemafor" runat="server" Text="Dodaj" OnClick="DodajSemafor_Click">Dodaj</asp:LinkButton>)</span>
@@ -223,60 +335,87 @@
                     <div id="editSemafor" runat="server" visible="false">
                         <asp:Label ID="labelSemaforID" runat="server" Visible="false"></asp:Label>
 
-                        <p class="maliNavText">
-                            <asp:LinkButton ID="LinkButtonBrisiSemafor" runat="server" OnClick="LinkButtonBrisiSemafor_Click" OnClientClick="return confirm('Da li ste sigurni da želite obrisati ovaj semafor?')">Briši</asp:LinkButton>
-                        </p>
-                        Naslov semafora :
-                <asp:TextBox ID="textBoxSemaforNaziv" runat="server" AutoPostBack="true" OnTextChanged="textBoxSemaforNaziv_TextChanged" ViewStateMode="Enabled"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="textBoxSemaforNaziv" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>
+                        <div class="semaforNaslov sjena">
+                            <p class="maliNavText">
+                                <asp:LinkButton ID="LinkButtonBrisiSemafor" runat="server" OnClick="LinkButtonBrisiSemafor_Click" OnClientClick="return confirm('Da li ste sigurni da želite obrisati ovaj semafor?')">Briši</asp:LinkButton>
+                            </p>
+                            Naslov semafora :
+                            <asp:TextBox ID="textBoxSemaforNaziv" runat="server" AutoPostBack="true" OnTextChanged="textBoxSemaforNaziv_TextChanged" ViewStateMode="Enabled"></asp:TextBox>
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="textBoxSemaforNaziv" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>
 
+                        </div>
 
+                       
+                        
+                         
+                            <div id="straniceContainer" class="straniceContainer sjena">
 
-                        <hr />
-                        <p class="maliNavText">
+                                 <p class="maliNavText">
                             <asp:LinkButton ID="LinkButtonDodajStranicu" runat="server" OnClick="LinkButtonDodajStranicu_Click">Dodaj</asp:LinkButton>
                             |
                             <asp:LinkButton ID="LinkButtonBrisiStranicu" runat="server" OnClick="LinkButtonBrisiStranicu_Click" OnClientClick="return confirm('Da li ste sigurni da želite obrisati ovu stranicu?')">Briši</asp:LinkButton>
 
                         </p>
-                        Stranice: 
+                             Stranice: 
 
-                 <asp:ListView ID="ListViewStranice" runat="server" DataSourceID="straniceSrc" OnItemCommand="ListViewStranice_ItemCommand">
-                     <LayoutTemplate>
+                            <asp:ListView ID="ListViewStranice" runat="server" DataSourceID="straniceSrc" OnItemCommand="ListViewStranice_ItemCommand">
+                            <LayoutTemplate>
 
-                         <span id="itemPlaceHolder" runat="server"></span>
+                                <span id="itemPlaceHolder" runat="server"></span>
 
-                     </LayoutTemplate>
-                     <ItemTemplate>
-                         <span id="StranicaLink<%#Eval("id")%>">
-                             <asp:LinkButton runat="server" ID='OdabranaStranica' CommandName="OdabranaStranica" CommandArgument='<%#Eval("Id") %>' OnClick="OdabranaStranica_Click" stranicaID='<%#Eval("Id") %>'><%# Eval("naziv")%></asp:LinkButton>&nbsp;
-                         </span>
-                     </ItemTemplate>
+                            </LayoutTemplate>
+                            <ItemTemplate>
+                               <span id="StranicaLink<%#Eval("id")%>">
+                               <asp:LinkButton runat="server" ID='OdabranaStranica' CommandName="OdabranaStranica" CommandArgument='<%#Eval("Id") %>' OnClick="OdabranaStranica_Click" stranicaID='<%#Eval("Id") %>'><%# Eval("naziv")%></asp:LinkButton>&nbsp;
+                               </span>
+                            </ItemTemplate>
 
-                 </asp:ListView>
-                        <br />
-                        <div id="straniceContainer">
+                        </asp:ListView>
+                           
+                            <br /><br /><br />
 
                             <%-- tu sad dodajemo divove sa stranicama --%>
-                            <div id="stranica1" class="stranica">
+                            <div id="stranica1" class="stranicaDetalj">
 
                                 <div id="podaciOStranici">
-                                    <asp:Label ID="LabelStranicaID" Visible="true" runat="server"></asp:Label>
-                                    Naslov stranice: 
-                            <asp:TextBox ID="TextBoxStranicaNaziv" runat="server" AutoPostBack="true" ViewStateMode="Enabled" OnTextChanged="TextBoxStranicaNaziv_TextChanged"></asp:TextBox>
-                                    <!--<asp:RequiredFieldValidator runat="server" ControlToValidate="TextBoxStranicaNaziv" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>-->
+                                    <asp:Label ID="LabelStranicaID" Visible="false" runat="server"></asp:Label>
+                                    
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Naslov stranice:
 
-                                    <br />
-                                    Vrijeme prikazivanja:
-                                    <asp:TextBox ID="TextBoxStranicaVrijemePrikazivanja" runat="server" AutoPostBack="true" OnTextChanged="TextBoxStranicaVrijemePrikazivanja_TextChanged" onchange="ValidateData(this);"></asp:TextBox>
-                                    <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti cjelobrojnu vrijednost"></asp:CompareValidator>
-                                    <!--<asp:RequiredFieldValidator runat="server" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>-->
-                                    <br />
-                                    broj redova: 
-                            <asp:DropDownList ID="DropDownListStranicaBrojRedova" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownListStranicaBrojRedova_SelectedIndexChanged">
-                                <asp:ListItem>1</asp:ListItem>
-                                <asp:ListItem>2</asp:ListItem>
-                            </asp:DropDownList>
+                                            </td>
+                                            <td> 
+                                                 <asp:TextBox ID="TextBoxStranicaNaziv" runat="server" AutoPostBack="true" ViewStateMode="Enabled" OnTextChanged="TextBoxStranicaNaziv_TextChanged"></asp:TextBox>
+                                                 <!--<asp:RequiredFieldValidator runat="server" ControlToValidate="TextBoxStranicaNaziv" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>-->
+                                            </td>
+                                        </tr>
+                                      <tr>
+                                          <td>
+                                                Vrijeme prikazivanja:
+                                          </td>
+                                          <td>
+                                                <asp:TextBox ID="TextBoxStranicaVrijemePrikazivanja" runat="server" AutoPostBack="true" OnTextChanged="TextBoxStranicaVrijemePrikazivanja_TextChanged" onchange="ValidateData(this);"></asp:TextBox>
+                                                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti cjelobrojnu vrijednost"></asp:CompareValidator>
+                                                <!--<asp:RequiredFieldValidator runat="server" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>-->
+                                         </td>
+                                      </tr>
+                                      <tr>
+                                            <td>
+                                             broj redova:
+
+                                            </td>
+                                          <td> 
+                                                <asp:DropDownList ID="DropDownListStranicaBrojRedova" runat="server" AutoPostBack="true" OnSelectedIndexChanged="DropDownListStranicaBrojRedova_SelectedIndexChanged">
+                                                    <asp:ListItem>1</asp:ListItem>
+                                                    <asp:ListItem>2</asp:ListItem>
+                                                </asp:DropDownList>
+                                        </td>
+
+                                      </tr>
+
+                                    </table>
                                 </div>
 
                                 <div id="redovi" class="red">
@@ -298,11 +437,10 @@
                                             </asp:LinqDataSource>
                                             <%--VrsteGrafa datasource--%>
                                             <asp:LinqDataSource ID="grafoviSrc" runat="server" ContextTypeName="TonzaDiplomski.SemaforiDataContext" EntityTypeName="" Select="new (id,naziv)" TableName="tblVrstaGrafas">
-                                              
                                             </asp:LinqDataSource>
 
                                             Red:
-                                    <asp:Label ID="LabelRedakID" Visible="true" runat="server" Text='<%#Eval("id") %>'></asp:Label>
+                                            <asp:Label ID="LabelRedakID" Visible="false" runat="server" Text='<%#Eval("id") %>'></asp:Label>
 
                                             <%-- celije --%>
                                             <br />
@@ -319,23 +457,21 @@
                                                     <%--tu idemo sa tri ćelije, u svakoj dva dropdown menu-a; upit i graf koji se prikazuje--%>
                                                     <div id='celija<%#Eval("id") %>' class="celija">
                                                         <asp:Label ID="labelCelijaID" runat="server" Visible="false" Text='<%#Eval("id") %>'></asp:Label>
-                                                        <%#Eval("id") %>
+                                                        
                                                         <div id="divCelijaOdabirUpita" runat="server">
-                                                            <asp:DropDownList ID="DropDownListOdabirUpita"
+                                                            <asp:DropDownList ID="DropDownListOdabirUpita" CssClass="dropDownSelectUpita"
                                                                 runat="server"
                                                                 DataSourceID="upitiSrc"
                                                                 DataTextField="naziv"
                                                                 DataValueField="id"
                                                                 AutoPostBack="True"
                                                                 celijaID='<%#Eval("id") %>'
-                                                                
                                                                 OnDataBound="DropDownListOdabirUpita_DataBinding"
-                                                                OnSelectedIndexChanged="DropDownListOdabirUpita_SelectedIndexChanged"
-                                                                 />
-                                                             <%--SelectedValue='<%#Bind("UpitID")%>'--%>
+                                                                OnSelectedIndexChanged="DropDownListOdabirUpita_SelectedIndexChanged" />
+                                                            <%--SelectedValue='<%#Bind("UpitID")%>'--%>
                                                         </div>
                                                         <div id="divCelijaOdabirVrsteGrafa" runat="server">
-                                                            <asp:DropDownList ID="DropDownListcelijaOdabirVrsteGrafa"
+                                                            <asp:DropDownList ID="DropDownListcelijaOdabirVrsteGrafa" CssClass="dropDownSelectGrafa"
                                                                 runat="server"
                                                                 DataSourceID="grafoviSrc"
                                                                 DataTextField="naziv"
@@ -343,13 +479,11 @@
                                                                 AutoPostBack="true"
                                                                 celijaID='<%#Eval("id")%>'
                                                                 OnDataBinding="DropDownListcelijaOdabirVrsteGrafa_DataBinding"
-                                                                OnSelectedIndexChanged="DropDownListcelijaOdabirVrsteGrafa_SelectedIndexChanged"
-                                                       
-                                                                 />
-                                                                     <%--SelectedValue='<%#Bind("grafID")%>'--%>
+                                                                OnSelectedIndexChanged="DropDownListcelijaOdabirVrsteGrafa_SelectedIndexChanged" />
+                                                            <%--SelectedValue='<%#Bind("grafID")%>'--%>
                                                         </div>
-                                                        
-                                                        
+
+
                                                     </div>
                                                 </ItemTemplate>
 
@@ -358,9 +492,11 @@
                                         </ItemTemplate>
 
                                     </asp:ListView>
-                                    <br />
-                                    <br />
-                                    <br />
+                                    
+
+                                    
+
+                                    
 
                                 </div>
 
@@ -368,9 +504,11 @@
 
                             </div>
                         </div>
-
+                       
 
                     </div>
+                        
+
 
                     <%--div koji služi za editiranje Upita--%>
                     <div id="editUpit" runat="server" visible="false">
@@ -430,6 +568,9 @@
 
                     </div>
 
+
+                        
+
                     <%--div koji služi za editiranje Servera--%>
                     <div id="editServer" runat="server" visible="false">
                         <p class="maliNavText">
@@ -466,12 +607,13 @@
 
                     </div>--%>
                 </div>
+                
 
                 <div runat="server" id="prikazTestUpita" class="lebdeciDialog sjena" visible="false">
-                    
-                    
-                                       
-                     <asp:Button runat="server" ID="buttonPrikazTestUpit_OK" OnClick="buttonPrikazTestUpit_OK_Click" Text="OK" />
+
+
+
+                    <asp:Button runat="server" ID="buttonPrikazTestUpit_OK" OnClick="buttonPrikazTestUpit_OK_Click" Text="OK" />
 
 
                 </div>
@@ -497,7 +639,7 @@
         <div runat="server" id="lebdeciDialog" class="lebdeciDialog sjena" style="display: none;">
 
             <asp:Label ID="labelLebdeciDialogPitanje" runat="server" Text=""></asp:Label>
-            <asp:Label ID="labelLebdeciDialogOdgovor" runat="server" Text="NE" style="display:none;"></asp:Label><br />
+            <asp:Label ID="labelLebdeciDialogOdgovor" runat="server" Text="NE" Style="display: none;"></asp:Label><br />
             <asp:Button ID="buttonLebdeciDialogOK" runat="server" Text="Da" OnClick="buttonLebdeciDialogOK_Click" />
             &nbsp;
             <asp:Button ID="buttonLebdeciDialogCANCEL" runat="server" Text="Ne" OnClick="buttonLebdeciDialogCANCEL_Click" />

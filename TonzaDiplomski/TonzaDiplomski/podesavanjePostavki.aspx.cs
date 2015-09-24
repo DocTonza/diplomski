@@ -172,7 +172,7 @@ namespace TonzaDiplomski {
                 if (l is ListViewDataItem) {
                     foreach (Control k in l.Controls) {
                         if (k is LinkButton) {
-                            (k as LinkButton).CssClass = "";
+                            (k as LinkButton).CssClass = "stranicaBijelo";
                         }
                     }
                 }
@@ -416,7 +416,7 @@ namespace TonzaDiplomski {
                                 (k as LinkButton).CssClass = "stranica";
                             }
                             else {
-                                (k as LinkButton).CssClass = "";
+                                (k as LinkButton).CssClass = "stranicaBijelo";
                             }
                         }
                     }
