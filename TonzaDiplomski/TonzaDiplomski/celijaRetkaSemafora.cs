@@ -23,7 +23,7 @@ namespace TonzaDiplomski {
             tblCelija celija = (from c in db.tblCelijas where c.id == celijaID select c).Single();
 
             if (celija.grafID == 1) {
-                PitaGraf pita = new PitaGraf(naslovCelije, podaciZaGraf);
+                PitaGraf pita = new PitaGraf(naslovCelije, podaciZaGraf,1);
                 InnerHtml = pita.ToString();
             }
 

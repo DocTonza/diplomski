@@ -5,7 +5,7 @@ using System.Text;
 using System.Web;
 
 namespace TonzaDiplomski {
-    public class PitaGraf {
+    public class PitaGraf :IGraf {
         string[] boje = new string[20]
                         { "#48FB8E", "#FB8E48", "#8EFB48", "#488EFB", "#FB488E", "#8E8E48", "#8E8EFB", "#48488E", "#4848FB", "#FBFB8E"
                         , "#FBFB48", "#8E488E", "#8EFB8E", "#488E48", "#48FB48", "#FB8EFB", "#FB48FB", "#8E8E8E", "#484848", "#FBFBFB" };
@@ -22,8 +22,17 @@ namespace TonzaDiplomski {
         List<Isjecak> isječci = new List<Isjecak>();         //lista u kojoj cuvamo sve isjecke, te iz nje crtamo pitu i legendu
         double sumaPodataka;
 
-        public PitaGraf(string naslovPite, List<PodatakZaGraf> ulazniPodaci)                                               // konstruktor
+        public string naslov { get; set; }
+        public int verzija { get; }
+        public List<PodatakZaGraf> podaci { get; set; }
+
+       
+
+        public PitaGraf(string naslovPite, List<PodatakZaGraf> ulazniPodaci, int pverzija)                                               // konstruktor
         {
+            naslov = naslovPite;
+            verzija = pverzija;
+            podaci = ulazniPodaci;
 
             sirina = 500;           // bilo je 460
             visina = 400;           //bilo je 350

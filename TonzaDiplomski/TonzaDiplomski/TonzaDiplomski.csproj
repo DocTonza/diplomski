@@ -425,6 +425,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IGraf.cs" />
     <Compile Include="Isjecak.cs" />
     <Compile Include="IStupacZaGraf.cs" />
     <Compile Include="Models\IdentityModels.cs" />

@@ -30,6 +30,8 @@ namespace TonzaDiplomski {
         int odmakOdRuba = 60;
         int naslovX;
         int naslovY;
+        string naslov { get; set; }
+
 
 
 

@@ -193,6 +193,14 @@
 
             left-margin:100px;
         }
+
+        .greskaUnos {
+            
+            font-size:10px;
+            color:red;
+        }
+
+         
     </style>
 
     <script>
@@ -467,8 +475,23 @@
                                                                 AutoPostBack="True"
                                                                 celijaID='<%#Eval("id") %>'
                                                                 OnDataBound="DropDownListOdabirUpita_DataBinding"
-                                                                OnSelectedIndexChanged="DropDownListOdabirUpita_SelectedIndexChanged" />
-                                                            <%--SelectedValue='<%#Bind("UpitID")%>'--%>
+                                                                OnSelectedIndexChanged="DropDownListOdabirUpita_SelectedIndexChanged" 
+                                                                
+                                                                />
+                                                            <asp:CompareValidator
+                                                                runat="server"
+                                                                ID="CompareValidatorListDropDownUpit"
+                                                                ControlToValidate="DropDownListOdabirUpita"
+                                                                Type="String"
+                                                                ValueToCompare="9999"
+                                                                Operator="NotEqual"
+                                                                ErrorMessage=" Obavezno odabrati"
+                                                                Display="Static"
+                                                                CssClass="greskaUnos">
+
+                                                            </asp:CompareValidator>
+
+                                                            
                                                         </div>
                                                         <div id="divCelijaOdabirVrsteGrafa" runat="server">
                                                             <asp:DropDownList ID="DropDownListcelijaOdabirVrsteGrafa" CssClass="dropDownSelectGrafa"
@@ -480,6 +503,19 @@
                                                                 celijaID='<%#Eval("id")%>'
                                                                 OnDataBinding="DropDownListcelijaOdabirVrsteGrafa_DataBinding"
                                                                 OnSelectedIndexChanged="DropDownListcelijaOdabirVrsteGrafa_SelectedIndexChanged" />
+
+                                                            <asp:CompareValidator
+                                                                runat="server"
+                                                                ID="DropDownListcelijaOdabirVrsteGrafaValidator"
+                                                                ControlToValidate="DropDownListcelijaOdabirVrsteGrafa"
+                                                                Type="String"
+                                                                ValueToCompare="9999"
+                                                                Operator="NotEqual"
+                                                                ErrorMessage=" Obavezno odabrati"
+                                                                Display="Dynamic"
+                                                                CssClass="greskaUnos">
+
+                                                            </asp:CompareValidator>
                                                             <%--SelectedValue='<%#Bind("grafID")%>'--%>
                                                         </div>
 
