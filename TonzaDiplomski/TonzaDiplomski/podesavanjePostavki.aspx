@@ -6,8 +6,9 @@
         body {
             background-color: #e6e6e6;
             font-family: 'Arial Unicode MS';
-            font-size:16px;
+            
         }
+       
 
         input {
             font-family: 'Arial Unicode MS';
@@ -21,14 +22,18 @@
             width: 80%;
             overflow: hidden;
         }
-
+        .naslov-a {
+            font-family: 'Arial Unicode MS';
+            font-size: 22px;
+            color: black;
+        }
         .naslov {
             /*position: relative;*/
             display: flex;
             margin-left: auto;
             margin-right: auto;
             width: 79%;
-            background-color: white;
+            /*background-color: white;*/
             color: black;
             padding-top: 15px;
             padding-bottom: 5px;
@@ -37,12 +42,13 @@
             margin-bottom: 5px;
             font-size: 24px;
             font-family: 'Arial Unicode MS';
-            font-weight: bold;
+            /*font-weight: bold;*/
             align-items: center;
         }
 
         .lijeviContent {
             font-family: 'Arial Unicode MS';
+            font-size:16px;
             position: relative;
             /*left: 10px;
             top: 120px;*/
@@ -191,7 +197,7 @@
         }
         table {
 
-            left-margin:100px;
+            margin-left:100px;
         }
 
         .greskaUnos {
@@ -242,7 +248,7 @@
     <asp:LinqDataSource ID="bazeSrc" runat="server" ContextTypeName="TonzaDiplomski.SemaforiDataContext" EntityTypeName="" Select="new (id, dbAttachString, naziv, korisnik, lozinka, salt, integratedAuth)" TableName="tblDBs"></asp:LinqDataSource>
 
 
-    <div id="naslov" runat="server" class="naslov sjena">
+    <div id="naslov" runat="server" class="naslov">
         <p>Podešavanje postavki:</p>
     </div>
     <div id="glavni">

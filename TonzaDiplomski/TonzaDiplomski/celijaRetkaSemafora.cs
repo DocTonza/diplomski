@@ -6,13 +6,13 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 
 namespace TonzaDiplomski {
-    public class celijaRetkaSemafora : System.Web.UI.HtmlControls.HtmlGenericControl {
+    public class CelijaRetkaSemafora : System.Web.UI.HtmlControls.HtmlGenericControl {
 
 
         List<PodatakZaGraf> podaciZaGraf = new List<PodatakZaGraf>();
 
         string naslovCelije;
-        public celijaRetkaSemafora(string pID,int celijaID) {
+        public CelijaRetkaSemafora(string pID,int celijaID) {
             ID = pID;
             TagName = "div";
             //InnerHtml = ID + DateTime.Now;

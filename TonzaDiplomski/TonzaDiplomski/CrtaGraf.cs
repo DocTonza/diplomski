@@ -68,7 +68,7 @@ namespace TonzaDiplomski {
             //ulazniPodaci.Sort((y, x) => x.Podatak.CompareTo(y.Podatak));
 
 
-            svgStrPočetak = "\n<svg id=\"" + grafID + "_svgContainer\" width = \"" + sirina.ToString() + "\" height = \"" + visina.ToString() + "\"class=\"stupciSVG\">\n";
+            svgStrPočetak = "\n<svg id=\"" + grafID + "_svgContainer\" width = \"" + sirina.ToString() + "\" height = \"" + visina.ToString() + "\"class=\"stupciSVG sjena\">\n";
 
             // započni string
             svgStr = svgStrPočetak;
@@ -162,7 +162,7 @@ namespace TonzaDiplomski {
             // y - koordinatna OS
             tekst += "\n<line id=\""+grafID+"_osX\" x1=\""+pishodisteX.ToString()+"\" y1=\""+pishodisteY.ToString()
                     +"\" x2=\""+pishodisteX.ToString()+"\" y2=\""+(pishodisteY-duzinaYosi).ToString()
-                    +"\" fill=\"black\" stroke=\"white\" stroke-width=\"2\" ></line>";
+                    +"\" fill=\"black\" stroke=\"black\" stroke-width=\"2\" ></line>";
 
             // x -koordnatna OS
             tekst += "\n<line id=\"" + grafID + "_osY\" x1=\"" + pishodisteX.ToString() + "\" y1=\"" + pishodisteY.ToString()

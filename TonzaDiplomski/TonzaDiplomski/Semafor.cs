@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace TonzaDiplomski {
     public class Semafor : System.Web.UI.HtmlControls.HtmlGenericControl {
@@ -18,7 +19,7 @@ namespace TonzaDiplomski {
         IEnumerable<tblStranica> stranice;
 
 
-        public Semafor (string pID) {                   //ovaj pID dolazi iz Cookie-a na page load Default.aspx
+        public Semafor (string pID,LinkButton labelaNaslovSemafora) {                   //ovaj pID dolazi iz Cookie-a na page load Default.aspx
 
             // pamtimo koja se stranica treba učitati
             if (HttpContext.Current.Session["trenutnaStranica"] == null) {
@@ -35,27 +36,34 @@ namespace TonzaDiplomski {
             
 
             semafor_DB_ID = Convert.ToInt32(pID);
-            
-            dodajNaslovSemafora();
+
+            //labelaNaslovSemafora.Text = "sredio ga";
+            //dodajNaslovSemafora(labelaNaslovSemafora);
+            dohvatiNaslovSemafora(labelaNaslovSemafora);
             dohvatiStranice();
             prikaziStranicu();
         }
 
 
-        private void dodajNaslovSemafora() {
+        private void dodajNaslovSemafora(LinkButton linkButtonNaslov) {
 
 
             // bilo bi dobro da imamo klasu za naslov semafora   ???
             
             naslovSemaforaRedak.Attributes["class"] = "row";
-            Controls.Add(naslovSemaforaRedak);
+            //Controls.Add(naslovSemaforaRedak);
 
-            
-            
+            //SiteMaster master = Page.Master
+
+           // ((Label)Page.Master.FindControl("labelHeaderNaslovSemafora")).Text = "your new text";
+            //labelHeaderNaslovSemafora
+
+
+
 
             naslovSemaforaCelija.Attributes["class"] = "col-lg-12 col-md-12 col-sm-12 semaforNaslov";
 
-            dohvatiNaslovSemafora();
+            dohvatiNaslovSemafora(linkButtonNaslov);
 
             // probaj dodati panel, pa na njega onda dodati naslov semafora
             glavniPanel.ID = "glavniPanel";
@@ -92,7 +100,8 @@ namespace TonzaDiplomski {
                 stranicaSemafora stranica = new stranicaSemafora(stranica_HTML_ID, semafor_DB_ID, stranice.ElementAt(trenutnaStranica - 1).Id, stranice.ElementAt(trenutnaStranica - 1).refreshPeriod);
 
                 Controls.Clear();
-                dodajNaslovSemafora();
+                //dodajNaslovSemafora(linkButtonNaslov);
+                //dohvatiNaslovSemafora(linkButtonNaslov);
                 Controls.Add(stranica);
 
                 ++trenutnaStranica;
@@ -110,16 +119,17 @@ namespace TonzaDiplomski {
 
         }
 
-        public void dohvatiNaslovSemafora() {
+        public void dohvatiNaslovSemafora(LinkButton linkButtonNaslov) {
             SemaforiDataContext db = new SemaforiDataContext();
-            IEnumerable<tblSemafor> 
-               semafori = from p in db.tblSemafors where p.Id == semafor_DB_ID 
-                                               select p ;
+            tblSemafor
+               semafor = (from p in db.tblSemafors where p.Id == semafor_DB_ID 
+                                               select p).Single() ;
 
 
 
             //  db.Dispose();                       // ovo će garbage collector srediti
-            naslovSemaforaCelija.InnerHtml = semafori.Last().naziv + " - Stranica " + trenutnaStranica;
+            // naslovSemaforaCelija.InnerHtml = semafori.Last().naziv + " - Stranica " + trenutnaStranica;
+            linkButtonNaslov.Text = semafor.naziv;
 
         }
     }

@@ -10,24 +10,24 @@
 namespace TonzaDiplomski {
     
     
-    public partial class SiteMaster {
+    public partial class OdabirSemafora {
         
         /// <summary>
-        /// labelHeaderNaslovSemafora control.
+        /// LinqDataSourceSemafori control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton labelHeaderNaslovSemafora;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSourceSemafori;
         
         /// <summary>
-        /// MainContent control.
+        /// DataListSemafori control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.DataList DataListSemafori;
     }
 }

@@ -24,6 +24,13 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
     </script>
+    <style>
+
+        .potpis {
+            color:black;
+            font-size:10px;
+        }
+    </style>
 </head>
 <body>
     <form runat="server">
@@ -63,11 +70,12 @@
                      <%--   <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">About</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>--%>
+                        <li><asp:LinkButton ID="labelHeaderNaslovSemafora" Text="Naslov trenutnog semafora" runat="server"></asp:LinkButton></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/odaberiSemafor.aspx">Odaberi semafor</a></li>
+                                <li><a runat="server" href="~/odabirSemafora.aspx">Odaberi semafor</a></li>
                                 <li><a runat="server" href="~/podesavanjePostavki.aspx">Podešavanje postavki</a></li>
                                 <li><a runat="server" href="~/Account/Login">Log in</a></li>
                             </ul>
@@ -89,7 +97,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Domagoj Tonžetić</p>
+                <p class="potpis">&copy; <%: DateTime.Now.Year %> - Domagoj Tonžetić</p>
             </footer>
         </div>
     </form>

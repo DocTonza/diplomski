@@ -29,7 +29,7 @@ namespace TonzaDiplomski {
 
             foreach (tblCelija celijaItem in celije) {
                 HTML_ID_Celije = redakID + "_celija_" + i;
-                celijaRetkaSemafora celija = new celijaRetkaSemafora(HTML_ID_Celije, celijaItem.id);
+                CelijaRetkaSemafora celija = new CelijaRetkaSemafora(HTML_ID_Celije, celijaItem.id);
                 celija.Attributes["class"] = "col-lg-4 col-md-6";
 
                 Controls.Add(celija);

@@ -50,7 +50,7 @@ namespace TonzaDiplomski {
             legendaX = centarX + polumjer + 50;
             legendaY = centarY - polumjer - 25;
 
-            svgStrPočetak = "<svg id=\""+grafID+"_svgContainer\" width = \"" + sirina.ToString() + "\" height = \"" + visina.ToString() + "\"class=\"pitaSVG\">";
+            svgStrPočetak = "<svg id=\""+grafID+"_svgContainer\" width = \"" + sirina.ToString() + "\" height = \"" + visina.ToString() + "\"class=\"pitaSVG sjena\">";
             svgStrKraj = "</svg>";
 
             //int i = 0;
@@ -89,7 +89,7 @@ namespace TonzaDiplomski {
 
                 // ako je bilo ostatka, zapiši ga
                 if (ostatakSumaPodataka>0)
-                    isječci.Add(new Isjecak(1000,grafID,centarX, centarY, polumjer, početniKut, ostatakSumaPodataka, Math.Round(ostatakSumaPodataka / sumaPodataka * 100, 2), "Ostatak", "#FFFFFF"));
+                    isječci.Add(new Isjecak(1000,grafID,centarX, centarY, polumjer, početniKut, ostatakSumaPodataka, Math.Round(ostatakSumaPodataka / sumaPodataka * 100, 2), "Ostatak", "#EEEEEE"));
             }
 
 

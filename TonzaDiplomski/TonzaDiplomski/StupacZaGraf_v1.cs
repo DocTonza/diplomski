@@ -113,7 +113,7 @@ namespace TonzaDiplomski {
             //linija
             stupacStr += "\n<line id=\""+stupacLabelaLinijaID+"\" x1=\"" + (posX+(sirina) / 2).ToString() + "\" y1=\"" + (posY - visina).ToString()
                       + "\" x2=\"" + (posX + (sirina) / 2).ToString() + "\" y2=\"" + (posY - visina - duzinaLinijeNaslova).ToString()
-                      + "\" fill=\"white\" stroke=\"white\" stroke-width=\"1\"/>";
+                      + "\" fill=\"black\" stroke=\"black\" stroke-width=\"1\"/>";
 
             // text
             stupacStr += "\n<text id=\""+stupacLabelaID+"\" x=\""+ (posX + (sirina) / 2).ToString() +"\" y=\"" + (posY - visina - duzinaLinijeNaslova).ToString() 

@@ -219,6 +219,7 @@
     <Content Include="Account\Web.config" />
     <Content Include="ApplicationInsights.config" />
     <Content Include="Content\Grafovi.css" />
+    <Content Include="OdabirSemafora.aspx" />
     <Content Include="SemaforEdit.aspx" />
     <Content Include="SemaforEdit_problemi.aspx" />
     <Content Include="_test.aspx" />
@@ -435,6 +436,13 @@
     </Compile>
     <Compile Include="OdaberiSemafor.aspx.designer.cs">
       <DependentUpon>OdaberiSemafor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OdabirSemafora.aspx.cs">
+      <DependentUpon>OdabirSemafora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OdabirSemafora.aspx.designer.cs">
+      <DependentUpon>OdabirSemafora.aspx</DependentUpon>
     </Compile>
     <Compile Include="PanelTest.aspx.cs">
       <DependentUpon>PanelTest.aspx</DependentUpon>

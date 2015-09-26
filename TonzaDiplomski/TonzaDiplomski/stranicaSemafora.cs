@@ -46,10 +46,6 @@ namespace TonzaDiplomski {
                           
         }
 
-        void osvjeziStranicu() {
-
-
-        }
 
         void dodajRetke(int pstranica_DB_ID) {
             string idRetka;
