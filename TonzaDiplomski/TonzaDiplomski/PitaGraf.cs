@@ -93,11 +93,6 @@ namespace TonzaDiplomski {
             }
 
 
-            //tu za sada punimo na ruke, ali ideja je da pošaljemo podatke koje smo pročitali iz baze
-            //isječci.Add(new Isjecak(centarX, centarY, polumjer, početniKut, 45,"Naslov1",boje[0]));
-            //isječci.Add(new Isjecak(centarX, centarY, polumjer, isječci[0].ZavršniKut, 38, "Naslov 2", boje[1]));
-            //isječci.Add(new Isjecak(centarX, centarY, polumjer, isječci[1].ZavršniKut, 15, "Naslov 3", boje[2]));
-            //isječci.Add(new Isjecak(centarX, centarY, polumjer, isječci[2].ZavršniKut, 2, "Naslov4", boje[3]));
 
             //početak iscrtavanja pite
             cijelaPita.Append(svgStrPočetak);

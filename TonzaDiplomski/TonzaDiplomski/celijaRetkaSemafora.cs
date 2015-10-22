@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace TonzaDiplomski {
     public class CelijaRetkaSemafora : System.Web.UI.HtmlControls.HtmlGenericControl {
@@ -42,7 +43,7 @@ namespace TonzaDiplomski {
                 InnerHtml = pita.ToString();
             }
 
-
+            
 
         }
 
@@ -53,6 +54,7 @@ namespace TonzaDiplomski {
 
             SemaforiDataContext db = new SemaforiDataContext();
 
+            
             viewCelijaPodaci celijaPodaci = (from cP in db.viewCelijaPodacis
                         where cP.id == celijaID
                         select cP).Single();
@@ -63,6 +65,7 @@ namespace TonzaDiplomski {
             
             connstring = "Server = "+celijaPodaci.serverString+";";
 
+            
             // ovaj dio dopisujemo samo ako postoji u bazi, a koristi se samo kad se radi o localDB-u, kada treba attachati bazu. Kad se spajamo na "Veliki" SQL to nam ne treba, pa kod unosa upozori korisnika na to
             if (celijaPodaci.dbAttachString !=null && celijaPodaci.dbAttachString.Length>0)
                 connstring += "AttachDbFileName= " + celijaPodaci.dbAttachString + ";";
@@ -74,6 +77,9 @@ namespace TonzaDiplomski {
             connstring += "Password=" + saes.Decrypt(celijaPodaci.lozinka) + ";";
 
             SqlConnection myConn = new SqlConnection(connstring);
+            
+            
+
             SqlCommand cmd = new SqlCommand(celijaPodaci.upit, myConn);
 
             try {
@@ -82,6 +88,7 @@ namespace TonzaDiplomski {
                 string bla;
                 // napuni podatke u listu podataka za graf
                 using (SqlDataReader oReader = cmd.ExecuteReader()) {
+                   
                     while (oReader.Read()) {
 
                         podaciZaGraf.Add(new PodatakZaGraf(oReader.GetValue(0).ToString(), (double)(decimal)oReader.GetValue(1)));

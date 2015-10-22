@@ -19,12 +19,13 @@
 
 
         <asp:Timer ID="timerZaStranice" Interval="5000" runat="server" />
-        <asp:UpdatePanel ID="Panel01" runat="server" UpdateMode="Conditional">
+        <asp:UpdatePanel ID="Panel01" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
         <ContentTemplate>
             <div id="divZaStranice" runat="server"></div>
         </ContentTemplate>    
-            <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="timerZaStranice" EventName="Tick" />
+            <Triggers>  
+                <%--<asp:AsyncPostBackTrigger ControlID="timerZaStranice" EventName="Tick" />--%>
+                <asp:PostBackTrigger ControlID="timerZaStranice" />
             </Triggers>
 
     </asp:UpdatePanel>

@@ -129,10 +129,16 @@ namespace TonzaDiplomski {
                 // dodaj podatak na vrh priče
                 tekst += "<text x=\""+ startTocke.ToString()+"\" y=\""+ (ishodisteY - Convert.ToInt32((podatak.Podatak / faktorSkaliranja))-15).ToString()+"\" class=\"crtaGrafPodaci\">" +podatak.Podatak+"</text>";
 
-                // dodaj labelu ispod X osi
-                tekst += "\n<text x=\"" + startTocke.ToString() + "\" y=\"" + (ishodisteY + 15).ToString() 
-                    + "\" class=\"crtaGrafLabele\" transform=\"rotate(-60,"+ startTocke.ToString()+","+ (ishodisteY + 15).ToString()+")\">" + podatak.Naslov + "</text>";
+                // dodaj labelu ispod X osi. Rotiraj samo ako je labela duža od 3 znaka
+                if (podatak.Naslov.Length>3) {
+                    tekst += "\n<text x=\"" + startTocke.ToString() + "\" y=\"" + (ishodisteY + 15).ToString()
+                        + "\" class=\"crtaGrafLabele\" transform=\"rotate(-60," + startTocke.ToString() + "," + (ishodisteY + 15).ToString() + ")\">" + podatak.Naslov + "</text>";
 
+                }else {
+                    tekst += "\n<text x=\"" + startTocke.ToString() + "\" y=\"" + (ishodisteY + 15).ToString()
+                       + "\" class=\"crtaGrafLabele\" transform=\"rotate(0," + startTocke.ToString() + "," + (ishodisteY + 15).ToString() + ")\">" + podatak.Naslov + "</text>";
+
+                }
                 startTocke += razmakPoX;
             }
 

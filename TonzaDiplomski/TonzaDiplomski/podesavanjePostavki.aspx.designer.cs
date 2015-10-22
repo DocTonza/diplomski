@@ -292,6 +292,15 @@ namespace TonzaDiplomski {
         protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiUpit;
         
         /// <summary>
+        /// spanUpitID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanUpitID;
+        
+        /// <summary>
         /// labelUpitID control.
         /// </summary>
         /// <remarks>
@@ -407,6 +416,15 @@ namespace TonzaDiplomski {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButtonBrisiServerDatasource;
+        
+        /// <summary>
+        /// spanServerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spanServerID;
         
         /// <summary>
         /// labelServerID control.

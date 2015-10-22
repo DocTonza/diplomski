@@ -27,6 +27,11 @@ namespace TonzaDiplomski
                 Response.Redirect("OdabirSemafora.aspx");
             }
             
+
+            // ako nije postback, onda resetiraj stranicu koja se pokazuje na prvu
+            if (!IsPostBack) {
+                Session["trenutnaStranica"] = 1;
+            }
           
 
             // tu stvaramo prvi red
@@ -42,9 +47,13 @@ namespace TonzaDiplomski
             //Semafor 
                 semafor01 = new Semafor(odabraniSemafor, ((LinkButton)Page.Master.FindControl("labelHeaderNaslovSemafora")));
             //stranicaSemafora Stranica1 = new stranicaSemafora("Stranica1");
-            
 
-        
+            /*if (Session["NaslovSemaforaIStranice"] != null) {
+                (Page.Master.FindControl("labelHeaderNaslovSemafora") as LinkButton).Text = (string)Session["NaslovSemaforaIStranice"];
+                
+            }*/
+
+
             timerZaStranice.Enabled = false;
             timerZaStranice.Interval = (int)Session["periodOsvjezavanjaStranice"];
             divZaStranice.Controls.Add(semafor01);
@@ -59,6 +68,8 @@ namespace TonzaDiplomski
         protected void timerZaStranice_Tick(object sender, EventArgs e) {
            
             timerZaStranice.Interval = (int)Session["periodOsvjezavanjaStranice"];
+            
+           
            
         }
 

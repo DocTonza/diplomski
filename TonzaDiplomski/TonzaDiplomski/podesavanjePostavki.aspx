@@ -104,6 +104,36 @@
             padding-right:5px;
         }
 
+        .izvorContainer {
+            position: relative;
+            /*left: 220px;
+            top: 120px;*/
+            float: left;
+            width: 100%;
+            /*height: 400px;*/
+            background-color: white;
+            color: black;
+            padding-bottom:20px;
+            padding-left:20px;
+            padding-top:5px;
+            padding-right:5px;
+        }
+
+        .upitContainer {
+            position: relative;
+            /*left: 220px;
+            top: 120px;*/
+            float: left;
+            width: 100%;
+            /*height: 400px;*/
+            background-color: white;
+            color: black;
+            padding-bottom:20px;
+            padding-left:20px;
+            padding-top:5px;
+            padding-right:5px;
+        }
+
         .stranica {
             display:inline-block;
             background-color: #e6e6e6;
@@ -187,6 +217,21 @@
             margin:2px;
             border:1px solid #e6e6e6;
             width:100%;
+
+        }
+        .dropDownSelectZaUpit {
+            margin:2px;
+            border:1px solid #e6e6e6;
+            width:280px;
+
+        }
+
+        .textBoxZaUpit {
+            margin:2px;
+            border:1px solid #e6e6e6;
+            width:520px;
+            height:260px;
+            font-size:12px;
 
         }
         td {
@@ -407,11 +452,18 @@
                                         </tr>
                                       <tr>
                                           <td>
-                                                Vrijeme prikazivanja:
+                                                Vrijeme prikazivanja (ms):
                                           </td>
                                           <td>
                                                 <asp:TextBox ID="TextBoxStranicaVrijemePrikazivanja" runat="server" AutoPostBack="true" OnTextChanged="TextBoxStranicaVrijemePrikazivanja_TextChanged" onchange="ValidateData(this);"></asp:TextBox>
-                                                <asp:CompareValidator runat="server" Operator="DataTypeCheck" Type="Integer" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti cjelobrojnu vrijednost"></asp:CompareValidator>
+                                                <asp:CompareValidator runat="server" 
+                                                    Operator="DataTypeCheck" 
+                                                    Type="Integer" 
+                                                    ControlToValidate="TextBoxStranicaVrijemePrikazivanja" 
+                                                    CssClass="greskaUnos"
+                                                    ErrorMessage="Morate unijeti cjelobrojnu vrijednost">
+
+                                                </asp:CompareValidator>
                                                 <!--<asp:RequiredFieldValidator runat="server" ControlToValidate="TextBoxStranicaVrijemePrikazivanja" ErrorMessage="Morate unijeti vrijednost"></asp:RequiredFieldValidator>-->
                                          </td>
                                       </tr>
@@ -553,59 +605,85 @@
 
 
                     <%--div koji služi za editiranje Upita--%>
-                    <div id="editUpit" runat="server" visible="false">
+                    <div id="editUpit" runat="server" visible="false" class="upitContainer sjena">
+
                         <p class="maliNavText">
                             <asp:LinkButton ID="LinkButtonBrisiUpit" runat="server" OnClientClick="return confirm('Da li ste sigurni?')">Briši</asp:LinkButton>
                         </p>
-                        UpitID:<asp:Label ID="labelUpitID" runat="server" Text=""></asp:Label><br />
-                        <br />
-                        Naziv:<asp:TextBox ID="textBoxUpitNaziv" runat="server" ToolTip="Naziv upita koji će se koristiti u sustavu."></asp:TextBox><br />
 
-                        datasource:<asp:DropDownList ID="dropDownListUpitOdaberiDatasource" runat="server" DataSourceID="serveriSrc" DataTextField="naziv" DataValueField="id"></asp:DropDownList><br />
-
-                        Upit:<asp:TextBox ID="textBoxUpitDefinicija" CssClass="selectEditBox" runat="server" TextMode="MultiLine" ToolTip="Definicija upita." AutoCompleteType="Disabled" spellcheck="false"></asp:TextBox>
-                        <asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator1"
-                            runat="server"
-                            ErrorMessage="Pronađene nedozvoljene komande u upitu."
-                            ValidationExpression="(^((?![Dd][Rr][Oo][Pp]\s)[\s\S])*$)*"
-                            ControlToValidate="textBoxUpitDefinicija"
-                            ForeColor="red" />
-                        <asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator2"
-                            runat="server"
-                            ErrorMessage="Pronađene nedozvoljene komande u upitu."
-                            ValidationExpression="(^((?![Dd][Ee][Ll][Ee][Tt][Ee]\s)[\s\S])*$)*"
-                            ControlToValidate="textBoxUpitDefinicija"
-                            ForeColor="red" />
-                        <asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator3"
-                            runat="server"
-                            ErrorMessage="Pronađene nedozvoljene komande u upitu."
-                            ValidationExpression="(^((?![Tt][Rr][Uu][Nn][Cc]\s)[\s\S])*$)*"
-                            ControlToValidate="textBoxUpitDefinicija"
-                            ForeColor="red" />
-                        <asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator4"
-                            runat="server"
-                            ErrorMessage="Pronađene nedozvoljene komande u upitu."
-                            ValidationExpression="(^((?![Tt][Rr][Uu][Nn][Cc][Aa][Tt][Ee]\s)[\s\S])*$)*"
-                            ControlToValidate="textBoxUpitDefinicija"
-                            ForeColor="red" />
-                        <asp:RegularExpressionValidator
-                            ID="RegularExpressionValidator5"
-                            runat="server"
-                            ErrorMessage="Pronađene nedozvoljene komande u upitu."
-                            ValidationExpression="(^((?![Ii][Nn][Ss][Ee][Rr][Tt]\s)[\s\S])*$)*"
-                            ControlToValidate="textBoxUpitDefinicija"
-                            ForeColor="red" />
+                        <table border="0">
+                            <tr>
+                                <td style="vertical-align:top">
 
 
-                        <asp:Button ID="buttonUpitSnimi" runat="server" Text="Snimi" OnClick="buttonUpitSnimi_Click" />
-                        <asp:Button ID="buttonUpitTestiraj" runat="server" Text="Testiraj upit" OnClick="buttonUpitTestiraj_Click" />
+                                    <span id="spanUpitID" runat="server" visible="false">UpitID:</span><asp:Label ID="labelUpitID" runat="server" Text="" visible="false"></asp:Label>
 
+                                    Naziv:
+                                </td>
+                                <td>
 
+                                    <asp:TextBox ID="textBoxUpitNaziv" runat="server" ToolTip="Naziv upita koji će se koristiti u sustavu." Width="300"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Izvor podataka:
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="dropDownListUpitOdaberiDatasource" runat="server" DataSourceID="serveriSrc" DataTextField="naziv" DataValueField="id" CssClass="dropDownSelectZaUpit"></asp:DropDownList><br />
+                                </td>
 
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top;">Upit:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxUpitDefinicija" CssClass="textBoxZaUpit" runat="server" TextMode="MultiLine" ToolTip="Definicija upita." AutoCompleteType="Disabled" spellcheck="false"></asp:TextBox>
+                                    <asp:RegularExpressionValidator
+                                        ID="RegularExpressionValidator1"
+                                        runat="server"
+                                        ErrorMessage="<br/>Pronađene nedozvoljene komande u upitu."
+                                        ValidationExpression="(^((?![Dd][Rr][Oo][Pp]\s)[\s\S])*$)*"
+                                        ControlToValidate="textBoxUpitDefinicija"
+                                        ForeColor="red" />
+                                    <asp:RegularExpressionValidator
+                                        ID="RegularExpressionValidator2"
+                                        runat="server"
+                                        ErrorMessage="Pronađene nedozvoljene komande u upitu."
+                                        ValidationExpression="(^((?![Dd][Ee][Ll][Ee][Tt][Ee]\s)[\s\S])*$)*"
+                                        ControlToValidate="textBoxUpitDefinicija"
+                                        ForeColor="red" />
+                                    <asp:RegularExpressionValidator
+                                        ID="RegularExpressionValidator3"
+                                        runat="server"
+                                        ErrorMessage="Pronađene nedozvoljene komande u upitu."
+                                        ValidationExpression="(^((?![Tt][Rr][Uu][Nn][Cc]\s)[\s\S])*$)*"
+                                        ControlToValidate="textBoxUpitDefinicija"
+                                        ForeColor="red" />
+                                    <asp:RegularExpressionValidator
+                                        ID="RegularExpressionValidator4"
+                                        runat="server"
+                                        ErrorMessage="Pronađene nedozvoljene komande u upitu."
+                                        ValidationExpression="(^((?![Tt][Rr][Uu][Nn][Cc][Aa][Tt][Ee]\s)[\s\S])*$)*"
+                                        ControlToValidate="textBoxUpitDefinicija"
+                                        ForeColor="red" />
+                                    <asp:RegularExpressionValidator
+                                        ID="RegularExpressionValidator5"
+                                        runat="server"
+                                        ErrorMessage="Pronađene nedozvoljene komande u upitu."
+                                        ValidationExpression="(^((?![Ii][Nn][Ss][Ee][Rr][Tt]\s)[\s\S])*$)*"
+                                        ControlToValidate="textBoxUpitDefinicija"
+                                        ForeColor="red" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: center">
+                                    <asp:Button ID="buttonUpitSnimi" runat="server" Text="Snimi" OnClick="buttonUpitSnimi_Click" />
+                                    <asp:Button ID="buttonUpitTestiraj" runat="server" Text="Testiraj upit" OnClick="buttonUpitTestiraj_Click" />
+
+                                </td>
+                            </tr>
+                        </table>
 
 
                     </div>
@@ -613,27 +691,75 @@
 
                         
 
-                    <%--div koji služi za editiranje Servera--%>
-                    <div id="editServer" runat="server" visible="false">
+                    <%--div koji služi za editiranje Servera--%> 
+                    <div id="editServer" runat="server" visible="false" class="izvorContainer sjena">
+                        
                         <p class="maliNavText">
                             <asp:LinkButton ID="LinkButtonBrisiServerDatasource" runat="server" OnClick="LinkButtonBrisiServerDatasource_Click" OnClientClick="return confirm('Da li ste sigurni?')">Briši</asp:LinkButton>
                         </p>
-                        ServerID:<asp:Label ID="labelServerID" runat="server"></asp:Label><br />
-                        Naziv:<asp:TextBox ID="textBoxServerNaziv" runat="server" ToolTip="Naziv izvora podataka koji će koristi u sustavu."></asp:TextBox><br />
-                        ServerString:<asp:TextBox ID="textBoxServerServerString" runat="server" ToolTip="Naziv SQL server instance na koju se spajamo"></asp:TextBox><br />
-                        Database:<asp:TextBox ID="textBoxServerDatabaseName" runat="server" ToolTip="Naziv baze na koju se spajamo."></asp:TextBox><br />
-                        Database Attach String:<asp:TextBox ID="textBoxServerDatabaseAttachString" runat="server" ToolTip="Potrebno unijeti samo ako se radi o LocalDB serveru."></asp:TextBox><br />
+                        <table border="0">
+                            <tr>
+                                <td>
+                        <span ID="spanServerID" runat="server" visible="false">ServerID:</span><asp:Label ID="labelServerID" runat="server" visible="false"></asp:Label>
+                        Naziv:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerNaziv" runat="server" ToolTip="Naziv izvora podataka koji će koristi u sustavu." Width="300"></asp:TextBox>
 
-                        <asp:CheckBox ID="checkBoxServerDatabaseIntegratedAuth" runat="server" Text="Integrated authentication" OnCheckedChanged="checkBoxServerDatabaseIntegratedAuth_CheckedChanged" AutoPostBack="true" /><br />
-                        Korisnik:<asp:TextBox ID="textBoxServerDatabaseKorisnik" runat="server"></asp:TextBox><br />
-                        Lozinka:
-                        <asp:TextBox ID="textBoxServerDatabaseLozinka" runat="server" TextMode="Password"></asp:TextBox><br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ServerString:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerServerString" runat="server" ToolTip="Naziv SQL server instance na koju se spajamo" Width="300"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Database:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerDatabaseName" runat="server" ToolTip="Naziv baze na koju se spajamo." Width="300"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Database Attach String:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerDatabaseAttachString" runat="server" ToolTip="Potrebno unijeti samo ako se radi o LocalDB serveru." Width="300"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <asp:CheckBox ID="checkBoxServerDatabaseIntegratedAuth" runat="server" Text="Integrated authentication" OnCheckedChanged="checkBoxServerDatabaseIntegratedAuth_CheckedChanged" AutoPostBack="true" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Korisnik:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerDatabaseKorisnik" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lozinka:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="textBoxServerDatabaseLozinka" runat="server" TextMode="Password"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:center;">
 
 
-                        <asp:Button ID="buttonProvjeriServerDatabaseString" runat="server" Text="Provjeri" OnClick="buttonProvjeriServerDatabaseString_Click" />
-                        <asp:Button ID="buttonServerSnimiPostavke" runat="server" Text="Spremi" OnClick="buttonServerSnimiPostavke_Click" Enabled="false" />
+                                    <asp:Button ID="buttonProvjeriServerDatabaseString" runat="server" Text="Provjeri" OnClick="buttonProvjeriServerDatabaseString_Click" />
+                                    <asp:Button ID="buttonServerSnimiPostavke" runat="server" Text="Spremi" OnClick="buttonServerSnimiPostavke_Click" Enabled="false" />
 
-                        <asp:Label ID="labelServerProvjeraStringa" Text="" runat="server"></asp:Label>
+                                    <asp:Label ID="labelServerProvjeraStringa" Text="" runat="server"></asp:Label>
+                                </td>
+                            </tr>
+                        </table>
 
                     </div>
 

@@ -191,7 +191,7 @@ namespace TonzaDiplomski {
 
             try {
                 stranica.refreshPeriod = Convert.ToInt32(TextBoxStranicaVrijemePrikazivanja.Text);
-
+                Session["periodOsvjezavanjaStranice"] = TextBoxStranicaVrijemePrikazivanja.Text;
 
                 try {
                     db.SubmitChanges();

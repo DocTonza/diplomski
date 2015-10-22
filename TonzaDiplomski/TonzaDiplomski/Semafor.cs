@@ -9,6 +9,7 @@ namespace TonzaDiplomski {
         int semafor_DB_ID;                   //ovo je property koji kaže koji je to semafor u našim postavkama, za razliku od ID taga koji se upisuje u HTML. Možda se može i objediniti.
         int brojStranica;
         int trenutnaStranica=1;                //uvijek krećemo od prve stranice
+        string nazivSemafora;
        
         System.Web.UI.HtmlControls.HtmlGenericControl naslovSemaforaRedak = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
         System.Web.UI.HtmlControls.HtmlGenericControl naslovSemaforaCelija = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
@@ -41,7 +42,7 @@ namespace TonzaDiplomski {
             //dodajNaslovSemafora(labelaNaslovSemafora);
             dohvatiNaslovSemafora(labelaNaslovSemafora);
             dohvatiStranice();
-            prikaziStranicu();
+            prikaziStranicu(labelaNaslovSemafora);
         }
 
 
@@ -53,9 +54,7 @@ namespace TonzaDiplomski {
             naslovSemaforaRedak.Attributes["class"] = "row";
             //Controls.Add(naslovSemaforaRedak);
 
-            //SiteMaster master = Page.Master
-
-           // ((Label)Page.Master.FindControl("labelHeaderNaslovSemafora")).Text = "your new text";
+            
             //labelHeaderNaslovSemafora
 
 
@@ -86,7 +85,7 @@ namespace TonzaDiplomski {
             
         }
 
-        public void prikaziStranicu() {
+        public void prikaziStranicu(LinkButton linkButtonNaslov) {
 
             if (trenutnaStranica > brojStranica) {
                 trenutnaStranica = 1;
@@ -102,11 +101,14 @@ namespace TonzaDiplomski {
                 Controls.Clear();
                 //dodajNaslovSemafora(linkButtonNaslov);
                 //dohvatiNaslovSemafora(linkButtonNaslov);
+                
                 Controls.Add(stranica);
+
+                linkButtonNaslov.Text = nazivSemafora + " - " + stranice.ElementAt(trenutnaStranica - 1).naziv;
 
                 ++trenutnaStranica;
                 HttpContext.Current.Session["trenutnaStranica"] = trenutnaStranica;
-
+               
             }
             else {
                 HttpContext.Current.Session["trenutnaStranica"] = 1;
@@ -125,11 +127,14 @@ namespace TonzaDiplomski {
                semafor = (from p in db.tblSemafors where p.Id == semafor_DB_ID 
                                                select p).Single() ;
 
+            //tblStranica stranica = (from s in db.tblStranicas where s.semaforID == semafor.Id select s).First();
 
 
             //  db.Dispose();                       // ovo će garbage collector srediti
             // naslovSemaforaCelija.InnerHtml = semafori.Last().naziv + " - Stranica " + trenutnaStranica;
-            linkButtonNaslov.Text = semafor.naziv;
+            nazivSemafora = semafor.naziv;
+            
+            //HttpContext.Current.Session["NaslovSemaforaIStranice"]= semafor.naziv + " - " + stranica.naziv;
 
         }
     }

@@ -146,9 +146,9 @@ namespace TonzaDiplomski {
                     if (Math.Abs(xLbl - prijasnjeLabele.Last().xLbl) < 35) {     //sijeku se po X osi
                         if (Math.Abs(yLbl - prijasnjeLabele.Last().yLbl) < 10 || prijasnjeLabele.Last().yLbl > yLbl) {
                             //sijeku se pomakni je gore ili dolje, ovisno da li si u gornjem ili donjem kvadrantu
-                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX < 0 ? -18 : 18);                                        // 14
+                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX <= 0 ? -18 : 18);                                        // 14
 
-                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY > 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
+                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY >= 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
                         }
                     }
                 }
@@ -156,9 +156,9 @@ namespace TonzaDiplomski {
                     if (Math.Abs(xLbl - prijasnjeLabele.Last().xLbl) < 35) {     //sijeku se po X osi
                         if (Math.Abs(yLbl - prijasnjeLabele.Last().yLbl) < 10 || prijasnjeLabele.Last().yLbl < yLbl) {
                             //sijeku se pomakni je gore ili dolje, ovisno da li si u gornjem ili donjem kvadrantu
-                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX < 0 ? -18 : 18);                                        // 14
+                            xLbl = prijasnjeLabele.Last().xLbl - (xPolaKuta - centarX <= 0 ? -18 : 18);                                        // 14
 
-                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY > 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
+                            yLbl = prijasnjeLabele.Last().yLbl - (yPolaKuta - centarY >= 0 ? -12 : 12);  //ako smo u gornjoj polovici, miči se prema gore, inače prema dolje
                         }
                     }
                 }
